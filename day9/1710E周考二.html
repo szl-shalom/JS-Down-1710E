@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+	
+	<style>
+		.left,.right {
+			float:left;
+			width:200px;
+			border:1px solid #ccc;
+			padding:20px;
+		}
+		
+		.middle{
+			float:left;
+		}
+		
+		.active{
+			background:red;
+		}
+	
+	</style>
+</head>
+
+<body>
+	<div class="wrap">
+		<div class="left">
+			<p>
+				<input type="checkbox">
+				<span>0/3</span>
+			</p>
+			<input type="text"  class="search1">
+			<div class="content">
+				<input type="checkbox">北京
+				<input type="checkbox">上海
+				<input type="checkbox">晨晨
+			</div>
+			
+		</div>
+		
+		<div class="middle">
+			<button class="middle-left">&lt;</button>
+			<button class="middle-right">&gt;</button>
+		
+		</div>
+		
+		<div class="right">
+			<p>
+				<input type="checkbox">
+				<span>0/3</span>
+			</p>
+			<input type="text"  class="search2">
+			<div class="content">
+			
+			</div>
+			
+		</div>
+	</div>
+	
+	<script>
+		// 左数据
+		var  arrLeft = [{
+			name:"北京",
+			pinyin:"beijing",
+			id:1
+		},{
+			name:"上海",
+			pinyin:"shanghai",
+			id:2
+		},{
+			name:"晨晨",
+			pinyin:"chenchen",
+			id:3
+		}];
+		// 右数据
+		var arrRight = [{
+			name:"南京",
+			pinyin:"nanjing",
+			id:4
+		}];
+		// 数据渲染
+		function render(el,data){
+			// 渲染对应数据
+			el.innerHTML = data.map(function(item){
+				return `
+					<input type="checkbox" class="qwe" id="${item.id}">${item.name}
+				`
+				
+			}).join("")
+			
+			// 修改选中个数和总数
+			el.parentNode.querySelector("span").innerHTML = `0/${data.length}`
+		}
+		// 选中函数   事件委托
+		function select(){
+			wrap.addEventListener("click",function(e){
+				// 获取事件源
+				var tar = e.target;
+				// 判断事件源的类名
+				if(tar.className === "qwe"){
+					// 获取所有兄弟元素
+					var inputs = [...tar.parentNode.children]
+					// 判断是否存在有一个有一个被选中的input
+					var flag = inputs.some(function(item){
+						return item.checked;
+					})
+					// 是否高亮
+					var checkAll = tar.parentNode.parentNode.querySelector("input");
+					var btn = tar.parentNode.parentNode.className === "left" ? document.querySelector(".middle-right"):document.querySelector(".middle-left")
+					if(flag){
+						checkAll.checked = true
+						btn.classList.add("active")
+					}else{
+						checkAll.checked = false
+						btn.classList.remove("active")
+					}
+					// 获取计算个数的span
+					tar.parentNode.parentNode.querySelector("span").innerHTML = `${tar.parentNode.querySelectorAll("input:checked").length}/${inputs.length}`
+				}
+				
+				if(tar.classList.contains("middle-left")){
+						var inputs = [...document.querySelectorAll(".right .qwe:checked")]
+						inputs.forEach(function(el){
+							arrRight.forEach(function(item,index){
+								if(+el.id === item.id){
+									arrLeft.push(arrRight.splice(index,1)[0])
+								}
+							})
+						})
+						
+						render(cons[0],arrLeft)
+						render(cons[1],arrRight)
+						document.querySelector(".middle-left").classList.remove("active");
+						document.querySelector(".right input").checked = false;
+				}
+				
+				if(tar.classList.contains("middle-right")){
+					var inputs = [...document.querySelectorAll(".left .qwe:checked")]
+					inputs.forEach(function(el){
+						arrLeft.forEach(function(item,index){
+							if(+el.id === item.id){
+								arrRight.push(arrLeft.splice(index,1)[0])
+							}
+						})
+					})
+					
+					render(cons[0],arrLeft)
+					render(cons[1],arrRight)
+					document.querySelector(".middle-right").classList.remove("active");
+					document.querySelector(".left input").checked = false;
+					
+				}		
+				
+			})
+			
+		}
+		
+		// 获取必要的节点
+		var  cons = [...document.querySelectorAll(".content")],
+			 wrap = document.querySelector(".wrap");
+		// 调用渲染函数
+		render(cons[0],arrLeft)
+		render(cons[1],arrRight)
+		
+		// 调用选中函数
+		select()
+		
+		// 模糊搜索
+		function search(el,data,tar){
+			el.addEventListener("input",function(){
+				var res = data.filter(function(item){
+					return item.name.includes(el.value) || item.pinyin.includes(el.value)
+				})
+				render(tar,res)
+			})
+		}
+		
+		var search1 = document.querySelector(".search1")
+		    search2 = document.querySelector(".search2")
+		search(search1,arrLeft,cons[0])
+		search(search2,arrRight,cons[1])
+		
+		
+		
+	
+	</script>
+</body>
+
+</html>

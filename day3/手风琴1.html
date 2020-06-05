@@ -1,0 +1,62 @@
+<html>
+	<head>
+		<style>
+			ul li {
+				list-style:none;
+				float:left;
+				width:100px;
+				height:300px;
+				overflow:hidden;
+				transition:width 1s;
+			}
+			
+			ul li.active {
+				width:500px;
+			}
+			
+			ul li img{
+				width:500px;
+				height:300px;
+			}
+		</style>
+	<head>
+	
+	<body>
+		<ul>	
+			<li >
+				<img src="./img/2.jpg">
+			</li>
+			<li>
+				<img src="./img/3.jpg">
+			</li>
+			
+			<li  class="active">
+				<img src="./img/4.jpg">
+			</li>
+			
+			<li>
+				<img src="./img/6.jpeg">
+			</li>
+			
+		<ul>
+		
+		<script>
+			var lis = document.querySelectorAll("li")
+			
+			lis.forEach(function(item,index){
+				item.onclick = function(){
+					document.querySelector(".active") && document.querySelector(".active").classList.remove("active")
+					item.classList.add("active")
+				}
+			})
+		
+		
+		</script>
+	</body>
+
+
+
+
+
+
+</html>

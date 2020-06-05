@@ -1,0 +1,93 @@
+<html>
+	<head>
+	
+	</head>
+	
+		
+	<body>
+	    <h1>1</h1>
+		
+		
+		
+		<div>
+			<p>
+				123123
+			</p>
+				<p>
+				123123
+			</p>
+			
+				<p>
+				123123
+			</p>
+			
+				<p>
+				123123
+			</p>
+				<p>
+				123123
+			</p>
+			
+				<p>
+				123123
+			</p>
+			
+			
+		</div>
+		
+		
+		
+		
+		<script>	
+			// 创建元素节点
+			// 语法：document.createElement(name)
+			// 参数：name是一个字符串  里面的内容是一个标签名称
+			// 返回值：被创建出来的节点
+				// 注意：1、被创建出来的节点没有在页面当中 
+				
+				
+			// 创建文本节点
+			// 语法：document.createTextNode(value)
+			// 参数：value是本文内容
+			// 返回值：被创建出来的节点
+				// 注意：1、被创建出来的节点没有在页面当中 
+				
+			// 添加节点
+			// 语法：el.appendChild(node)
+			// 参数：node必须是一个节点
+			// 说明：1、将node节点添加到el节点的尾部
+				//   2、node节点会发生转移
+				
+			// 删除节点
+			// 语法：el.removeChild(node)
+			// 参数：node必须是一个节点
+			// 说明：node必须是el的第一代子元素
+		    // 简单方法：node.remove()
+			
+			// 替换方法：
+			// 语法：el.replaceChild(newNode,oldNode)
+			// 参数: newNode 新节点  
+			//       oldNode 旧节点
+			// 功能：用新节点将旧节点替换
+			
+
+			// 插入节点
+			// 语法：el.insertBefore(newNode,oldNode)
+			// 参数: newNode 新节点  
+			//       oldNode 旧节点
+			// 功能：将新的节点插入到旧节点的前面
+			
+			
+			var div = document.querySelector("div"),
+				h1 = document.querySelector("h1");
+				console.log(div.lastElementChild)
+			div.insertBefore(h1,div.lastElementChild)
+			
+			
+			
+		</script>
+	
+	</body>
+
+
+</html>

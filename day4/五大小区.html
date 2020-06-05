@@ -1,0 +1,78 @@
+<html>
+
+	<head>
+		<style>
+			div{
+				height:300px;
+			}
+			span{
+				padding:6px 12px;
+				border:1px solid #ccc;
+			}
+		</style>
+	
+	</head>
+
+	
+	
+	<body>
+	
+		<div class="header"></div>
+		<div class="con">
+			
+		</div>
+	
+		<script>
+			// 判断：inpunt type = "checkbox"
+			// 语法：input.checked = true  说明当前被选中
+			//       input.checked = false  说明当前未选中
+
+			var arr = ["上海校区","滨河校区","上地校区","宿迁校区","正在建设的天津校区"]
+			
+			var  header = document.querySelector(".header"),
+				 con = document.querySelector(".con");
+				
+				
+				 
+				 
+				
+		    // 渲染页面
+			con.innerHTML =  arr.map(function(item){
+				return `<input type="checkbox">${item}`
+			}).join("")
+			//inputs
+			var  inputs = [...document.querySelectorAll("input")];
+			//循环绑定点击事件
+			
+			inputs.forEach(function(item,index){
+				item.onclick = function(){
+					// 判断是否选中
+					
+					if(item.checked){
+						// 说明被选中
+						var el = item.nextSibling.nodeValue
+						var span = document.createElement("span")
+						span.innerHTML = el
+						header.appendChild(span)
+					}else{
+						// 说明未选中
+						var el = item.nextSibling.nodeValue
+						var spans = [...document.querySelectorAll("span")];
+						spans.forEach(function(item){
+							item.innerHTML === el?item.remove():null
+						})
+				 
+					}
+				}
+			})
+				 
+		
+				 
+			
+		
+	
+		</script>
+	</body>
+
+	
+</html>

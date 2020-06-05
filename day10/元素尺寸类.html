@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=F, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+			
+		}
+		div{
+			width:200px;
+			height:200px;
+			background:red;
+			padding:10px;
+			margin:20px;
+			border:2px solid #ccc;	
+		}
+	
+	</style>
+	
+</head>
+<body style="height:2000px;width:2000px;">
+	
+	
+
+			<div class="myDiv">
+	
+			</div>
+	
+	
+	<script>
+		// 页面尺寸类
+		// 获取窗口的高度和宽度  (包含滚动条)
+	//	console.log(window.innerWidth)
+	//	console.log(window.innerHeight)
+		
+		// 获取窗口的高度和宽度  ( 不包含滚动条)
+		//console.log(document.documentElement.clientWidth)
+	//	console.log(document.documentElement.clientHeight)
+		
+		// 获取页面的实际高度和宽度
+	//	console.log(document.documentElement.scrollWidth)
+		//console.log(document.documentElement.scrollHeight)
+		
+		// 元素尺寸类
+		//var div = document.querySelector(".myDiv")
+		// 获取元素的width + padding + border
+	//	console.log(div.offsetWidth)
+	//	console.log(div.offsetHeight)
+		
+		// 获取元素的width + padding
+		//console.log(div.clientWidth)
+		//console.log(div.clientHeight)
+		
+		 
+		// 获取元素距离最近的一个开定位的父元素的距离  元素位置
+		//console.log(div.offsetLeft) 
+	//	console.log(div.offsetTop)
+	
+		// 事件类尺寸
+		
+		var  div = document.querySelector("div")
+		//document.addEventListener("click",function(e){
+			// 获取鼠标点距离元素的左顶点的下标
+			//console.log(e.offsetX,e.offsetY)
+			
+			// 获取鼠标点到可视区域的左顶点的下标
+			//console.log(e.clientX,e.clientY)
+			
+			//获取鼠标点到页面左顶点的的下标
+			//console.log(e.pageX,e.pageY)
+		//})
+		var pos = null,
+			flag = false;
+		
+		div.addEventListener("mousedown",function(e){
+			div.style.position = "absolute";
+			 pos = {
+				x:e.offsetX,
+				y:e.offsetY
+			}
+			flag = true;
+		})
+		
+		document.addEventListener("mousemove",function(e){
+			
+			if(flag){
+				console.log( e.pageX - pos.x)
+				div.style.left = e.pageX - pos.x + "px"
+				div.style.top = e.pageY - pos.y + "px"
+			}
+		
+		})
+		
+		document.addEventListener("mouseup",function(){
+			flag = false;
+			
+		})
+		
+	
+	</script>
+</body>
+</html>

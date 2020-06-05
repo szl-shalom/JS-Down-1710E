@@ -1,0 +1,413 @@
+@charset "UTF-8";
+.CN_zh#finnair-banner {
+  font-family: Helvetica,Arial,Verdana,Georgia,'Microsoft Yahei'; }
+
+.CN_zh .TextFrame, .CN_zh .TextAndPriceFrame {
+  font-weight: bold;
+  line-height: 1.2; }
+  .CN_zh .TextFrame span, .CN_zh .TextAndPriceFrame span {
+    white-space: pre;
+    font-weight: bold;
+    line-height: 1.2;
+    display: inline-block; }
+
+.CN_zh .PriceLabel, .CN_zh .OnePriceLabel {
+  font-size: .7em;
+  font-weight: normal; }
+
+.CN_zh .destination {
+  margin-bottom: 3px;
+  font-size: 1em; }
+
+.CN_zh .offer {
+  margin-top: 7px;
+  font-weight: bold;
+  line-height: 1.2; }
+
+.CN_zh .price {
+  font-size: 1.6em;
+  text-align: left; }
+  .CN_zh .price:after {
+    content: "\5143\8D77";
+    font-size: .7em;
+    display: inline-block;
+    margin-left: 3px;
+    vertical-align: middle; }
+
+.CN_zh #campaignLabel {
+  font-size: .8em;
+  letter-spacing: 2px;
+  padding-right: 3em; }
+  .CN_zh #campaignLabel svg {
+    margin-right: .5em; }
+
+.CN_zh.size160x600 .PriceListFrame, .CN_zh.size160x600 .ShortPriceListFrame, .CN_zh.size160x600 .TextAndPriceFrame, .CN_zh.size160x600 .OnePriceFrame, .CN_zh.size160x600 .TextFrame {
+  font-size: 1em; }
+  .CN_zh.size160x600 .PriceListFrame .destination, .CN_zh.size160x600 .ShortPriceListFrame .destination, .CN_zh.size160x600 .TextAndPriceFrame .destination, .CN_zh.size160x600 .OnePriceFrame .destination, .CN_zh.size160x600 .TextFrame .destination {
+    font-size: 1em; }
+  .CN_zh.size160x600 .PriceListFrame .price, .CN_zh.size160x600 .ShortPriceListFrame .price, .CN_zh.size160x600 .TextAndPriceFrame .price, .CN_zh.size160x600 .OnePriceFrame .price, .CN_zh.size160x600 .TextFrame .price {
+    font-size: 1.6em;
+    line-height: 1; }
+
+.CN_zh.size300x600 .PriceListFrame, .CN_zh.size300x600 .ShortPriceListFrame, .CN_zh.size300x600 .TextAndPriceFrame, .CN_zh.size300x600 .OnePriceFrame {
+  font-size: 1em; }
+  .CN_zh.size300x600 .PriceListFrame .destination, .CN_zh.size300x600 .ShortPriceListFrame .destination, .CN_zh.size300x600 .TextAndPriceFrame .destination, .CN_zh.size300x600 .OnePriceFrame .destination {
+    font-size: 23px;
+    margin-bottom: 0; }
+  .CN_zh.size300x600 .PriceListFrame .price, .CN_zh.size300x600 .ShortPriceListFrame .price, .CN_zh.size300x600 .TextAndPriceFrame .price, .CN_zh.size300x600 .OnePriceFrame .price {
+    font-size: 25.6px;
+    display: block; }
+    .CN_zh.size300x600 .PriceListFrame .price:after, .CN_zh.size300x600 .ShortPriceListFrame .price:after, .CN_zh.size300x600 .TextAndPriceFrame .price:after, .CN_zh.size300x600 .OnePriceFrame .price:after {
+      vertical-align: bottom; }
+
+.CN_zh.size300x250 .PriceListFrame, .CN_zh.size300x250 .ShortPriceListFrame, .CN_zh.size300x250 .TextAndPriceFrame, .CN_zh.size300x250 .TextFrame {
+  font-size: 0.95em; }
+  .CN_zh.size300x250 .PriceListFrame .destination, .CN_zh.size300x250 .ShortPriceListFrame .destination, .CN_zh.size300x250 .TextAndPriceFrame .destination, .CN_zh.size300x250 .TextFrame .destination {
+    font-size: .9em; }
+  .CN_zh.size300x250 .PriceListFrame .price, .CN_zh.size300x250 .ShortPriceListFrame .price, .CN_zh.size300x250 .TextAndPriceFrame .price, .CN_zh.size300x250 .TextFrame .price {
+    font-size: 22px; }
+  .CN_zh.size300x250 .PriceListFrame .PriceLabel, .CN_zh.size300x250 .ShortPriceListFrame .PriceLabel, .CN_zh.size300x250 .TextAndPriceFrame .PriceLabel, .CN_zh.size300x250 .TextFrame .PriceLabel {
+    font-size: .6em; }
+
+.CN_zh.size728x90 .TextFrame, .CN_zh.size728x90 .TextAndPriceFrame, .CN_zh.size912x90 .TextFrame, .CN_zh.size912x90 .TextAndPriceFrame, .CN_zh.size1200x90 .TextFrame, .CN_zh.size1200x90 .TextAndPriceFrame {
+  font-size: 1em; }
+  .CN_zh.size728x90 .TextFrame br:nth-of-type(odd), .CN_zh.size728x90 .TextAndPriceFrame br:nth-of-type(odd), .CN_zh.size912x90 .TextFrame br:nth-of-type(odd), .CN_zh.size912x90 .TextAndPriceFrame br:nth-of-type(odd), .CN_zh.size1200x90 .TextFrame br:nth-of-type(odd), .CN_zh.size1200x90 .TextAndPriceFrame br:nth-of-type(odd) {
+    display: none; }
+
+.CN_zh.size728x90 .PriceLabel, .CN_zh.size728x90 .OnePriceLabel, .CN_zh.size912x90 .PriceLabel, .CN_zh.size912x90 .OnePriceLabel, .CN_zh.size1200x90 .PriceLabel, .CN_zh.size1200x90 .OnePriceLabel {
+  font-size: .6em;
+  margin-bottom: 4px;
+  margin-top: 7px; }
+
+.CN_zh.size728x90 .destination, .CN_zh.size912x90 .destination, .CN_zh.size1200x90 .destination {
+  font-size: 17px;
+  line-height: 20px;
+  vertical-align: middle; }
+
+.CN_zh.size728x90 .price, .CN_zh.size912x90 .price, .CN_zh.size1200x90 .price {
+  line-height: 20px;
+  vertical-align: middle; }
+  .CN_zh.size728x90 .price:after, .CN_zh.size912x90 .price:after, .CN_zh.size1200x90 .price:after {
+    font-size: .7em; }
+
+.CN_zh.size728x90 .OnePriceFrame, .CN_zh.size912x90 .OnePriceFrame, .CN_zh.size1200x90 .OnePriceFrame {
+  justify-content: flex-start; }
+
+.CN_zh.size728x90 #campaignLabel {
+  width: 320px; }
+
+.size300x250 #frames {
+  position: absolute;
+  height: calc(100% - 12px);
+  overflow: hidden;
+  left: 29px;
+  top: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 142px;
+  background: #fff;
+  z-index: 20;
+  box-sizing: border-box;
+  padding: 0 12px 63px; }
+
+.size300x250 .Frame {
+  top: 0;
+  left: 12px;
+  width: 119px;
+  height: 174px; }
+
+.size300x250 .withIcon {
+  padding-top: 43px; }
+
+.size300x250 .PriceListFrame {
+  font-size: 19px;
+  width: 119px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+
+.size300x250 .TextFrame {
+  font-size: 19px;
+  width: 119px;
+  justify-content: space-around; }
+
+.size300x250 .destination {
+  display: block;
+  font-size: 14.5px; }
+
+.size300x250 .price {
+  display: block;
+  font-size: 26px;
+  line-height: 1; }
+
+.size300x250 .PriceLabel, .size300x250 .OnePriceLabel {
+  font-size: 10px; }
+
+.size300x250 .PriceLabel {
+  margin-top: 0px; }
+
+.size300x250 #image {
+  left: 6px;
+  top: 6px;
+  width: 286px;
+  height: 236px; }
+
+.size300x250 #cta {
+  bottom: 40px;
+  left: 40px;
+  line-height: 28px;
+  height: 28px;
+  padding: 0 29px 0 13px;
+  font-size: 11.3px; }
+
+.size300x250 #cta svg {
+  right: 13px;
+  width: 5px; }
+
+.size300x250 #oneworld {
+  bottom: 7px;
+  left: 35px;
+  width: 13px;
+  height: 13px; }
+
+.size300x250 #finnair {
+  width: 73px;
+  height: 8px;
+  bottom: 9px;
+  right: 137px; }
+
+.size300x250 #campaignLabel, .size300x250 #iconText {
+  font-size: 11.4px;
+  height: 33px;
+  line-height: 33px;
+  width: 142px;
+  position: absolute;
+  left: 0;
+  top: 0; }
+
+.size300x250 #campaignLabel svg, .size300x250 #iconText svg {
+  margin: 0 7px 0 11px; }
+
+.size300x250 #iconText {
+  color: #0b1560;
+  left: -12px;
+  font-size: 10px;
+  top: 20px; }
+
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+@font-face {
+  font-family: 'Amplitude-Bold';
+  src: url(1d23c817e1ce30fc82ee8cb86d05e844.woff) format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Amplitude-Book';
+  src: url(f3e8de22e2658f7cc56c95935cb9576b.woff) format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+.TextFrame {
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+
+.OnePriceFrame {
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+
+.ShortPriceListFrame .PriceLabel {
+  font-family: 'Amplitude-Book';
+  width: 100%;
+  display: block;
+  margin-top: 10px;
+  margin-right: 5px;
+  color: #6e6e6e; }
+
+.TextAndPriceFrame {
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+
+#cta {
+  position: absolute;
+  z-index: 9999;
+  display: inline-block;
+  cursor: pointer;
+  color: #fff;
+  background: #0b1560;
+  text-align: center;
+  opacity: 0; }
+
+#cta svg {
+  display: inline-block;
+  fill: #fff;
+  height: 100%;
+  position: absolute;
+  top: 0; }
+
+#cta:hover {
+  background: #162067; }
+
+#campaignLabel {
+  color: #fff;
+  position: absolute;
+  letter-spacing: 0.03em;
+  opacity: 0;
+  transform: translateY(-30px);
+  z-index: 10; }
+
+#campaignLabel svg {
+  height: 100%;
+  float: left;
+  opacity: 0;
+  transform: translateX(-20px); }
+
+#iconText {
+  color: #0b1560;
+  font-family: 'Amplitude-Book';
+  position: absolute;
+  letter-spacing: 0.03em;
+  opacity: 0; }
+
+#iconText svg {
+  height: 100%;
+  float: left;
+  opacity: 0;
+  transform: translateX(-20px); }
+
+.campaign #iconText {
+  display: none; }
+
+#image {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom center; }
+
+#topImageArea {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top center; }
+
+.campaign #topImageArea {
+  display: none; }
+
+.offer {
+  display: block;
+  margin-top: 8px;
+  text-align: left;
+  padding: 3px 10px 0 0;
+  box-sizing: border-box; }
+
+.destination {
+  display: block; }
+
+.price {
+  display: block;
+  letter-spacing: -0.01em; }
+
+.price::after {
+  font-size: 0.8em;
+  margin-left: 0.083em; }
+
+.PriceLabel, .OnePriceLabel {
+  width: 100%;
+  display: block;
+  margin-top: 10px;
+  margin-right: 5px;
+  color: #6e6e6e; }
+
+#finnair-banner {
+  position: absolute;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: #fff;
+  color: #0b1560;
+  text-transform: uppercase;
+  cursor: pointer; }
+
+#frames {
+  position: absolute;
+  z-index: 10; }
+
+.Frame {
+  position: absolute;
+  box-sizing: border-box;
+  opacity: 0; }
+
+.campaign .Frame {
+  padding-top: 30px; }
+
+.longText {
+  font-size: .75em; }
+
+#finnair {
+  position: absolute;
+  z-index: 223;
+  display: block; }
+
+#oneworld {
+  position: absolute;
+  z-index: 223;
+  background: url(5107b7d222fe2ed45824838dd3657ee1.png);
+  background-size: contain; }
+
+#cover {
+  background: #fff;
+  position: absolute;
+  z-index: 15; }
+

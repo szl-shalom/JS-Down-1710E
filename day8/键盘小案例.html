@@ -1,0 +1,50 @@
+<html>
+	
+	<body>
+	
+	
+		
+		
+		<script>
+			var div  = document.createElement("div");
+			document.body.appendChild(div)
+			
+			div.style.width = "300px"
+			div.style.height = "300px"
+			div.style.background = "red"
+			
+			div.style.position = "absolute"
+			div.style.top = 0
+			div.style.left = 0
+			
+			document.onkeydown = function (e){
+					console.log(e)
+				switch(e.keyCode){
+					// 上箭头
+					case 38:
+						div.style.top = parseInt(div.style.top) - 5 + "px"
+						break;
+						// 下箭头
+							
+					case 40:
+					div.style.top = parseInt(div.style.top) + 5 + "px"
+						break;
+						// 左箭头
+						
+					case 37:
+					div.style.left = parseInt(div.style.left) - 5 + "px"
+						break;
+						// 右箭头
+						
+					case 39:
+						div.style.left = parseInt(div.style.left) + 5 + "px"
+						break;
+				}
+				
+			}
+		
+		</script>
+	</body>
+
+
+</html>

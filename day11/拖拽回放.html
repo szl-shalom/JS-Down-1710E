@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            border: 2px solid #ccc;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            position: absolute;
+			background:red;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <button>回放</button>
+    <script>
+		var div = document.querySelector("div"),
+			pos = null,
+			flag = false,
+			arr = [];
+		
+		div.addEventListener("mousedown",function(e){
+			flag = true;
+			pos = {
+				
+				x:e.offsetX,
+				y:e.offsetY,
+			}
+			
+		})
+		
+		document.addEventListener("mousemove",function(e){
+			if(flag){
+				var x = e.pageX - pos.x,
+					y = e.pageY- pos.y;
+					
+				div.style.left = x +"px";
+				div.style.top = y + "px";
+				
+				arr.push({
+					x:x,
+					y:y,
+				})
+				
+			}
+			
+		})
+		
+		document.addEventListener("mouseup",function(){
+			flag = false;
+		})
+		
+		document.querySelector("button").addEventListener("click",function(){
+				var timer = setInterval(function(){
+					var res = arr.pop()
+					div.style.left = res.x + "px";
+					div.style.top = res.y + "px";
+					
+					if(arr.length <=0){
+						clearInterval(timer)
+						
+					}
+					
+				},30)
+			
+		})
+
+    </script>
+</body>
+
+</html>

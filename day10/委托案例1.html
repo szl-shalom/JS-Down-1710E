@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>1</button>
+    <script>
+        //  DOM0级取消事件
+        //  el.on[事件类型] = 1
+        var btn = document.querySelector("button");
+
+        // DOM2级取消事件
+        // el.removeEventListener(type,fn,boolean)
+        // fn函数必须是绑定事件时的函数
+
+        // 事件兼容
+        // IE 事件兼容
+        // el.attachEvent("on+事件名称",事件驱动函数)  //绑定
+		// el.detachEvent("on+事件名称",事件驱动函数)  // 移除
+    
+		// 绑定事件兼容函数
+        function addEvent(el,type,fn) {
+			if(el.addEventListener){
+				el.addEventListener(type,fn)
+			}else if(el.attachEvent){
+				el.attachEvent("on"+type,fn)
+			} else{
+				el["on"+type] = fn
+			}
+            
+        }
+		
+		addEvent(btn,"click",function(e){
+			// 兼容处理事件对象
+			e = e || window.event
+			// 获取事件源
+			var tar = e.target || e.srcElement;
+		})
+
+    </script>
+</body>
+
+</html>

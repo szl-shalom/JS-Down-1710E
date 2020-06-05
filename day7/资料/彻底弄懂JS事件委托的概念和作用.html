@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)https://www.cnblogs.com/soyxiaobi/p/9498357.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    <meta property="og:description" content="一、写在前头 &amp;nbsp;&amp;nbsp;&amp;nbsp;接到某厂电话问什么是事件代理的时候,一开始说addEventListener,然后他说直接绑定新的元素不会报dom不存在的错误吗？然后我就混乱了,我印">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>彻底弄懂JS事件委托的概念和作用 - xiaobe - 博客园</title>
+    
+    <link rel="stylesheet" href="./彻底弄懂JS事件委托的概念和作用_files/blog-common.min.css">
+    <link id="MainCss" rel="stylesheet" href="./彻底弄懂JS事件委托的概念和作用_files/bundle-insidedotnet.min.css">
+    <link type="text/css" rel="stylesheet" href="./彻底弄懂JS事件委托的概念和作用_files/436456.css">
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./彻底弄懂JS事件委托的概念和作用_files/bundle-insidedotnet-mobile.min.css">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/soyxiaobi/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/soyxiaobi/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/soyxiaobi/wlwmanifest.xml">
+    <script src="./彻底弄懂JS事件委托的概念和作用_files/amp4ads-host-v0.js.下载"></script><script src="./彻底弄懂JS事件委托的概念和作用_files/pubads_impl_rendering_2019082901.js.下载"></script><script async="" src="./彻底弄懂JS事件委托的概念和作用_files/analytics.js.下载"></script><script src="./彻底弄懂JS事件委托的概念和作用_files/jquery-2.2.0.min.js.下载"></script>
+    <script src="./彻底弄懂JS事件委托的概念和作用_files/blog-common.min.js.下载"></script>
+    <script>
+        var currentBlogId = 436456;
+        var currentBlogApp = 'soyxiaobi';
+        var cb_enable_mathjax = true;
+        var isLogined = false;
+    </script>
+    <script type="text/x-mathjax-config;executed=true">
+        MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: {
+        equationNumbers: { autoNumber: ['AMS'], useLabelIds: true },
+        extensions: ['extpfeil.js', 'mediawiki-texvc.js'],
+        Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script>
+    <script src="./彻底弄懂JS事件委托的概念和作用_files/MathJax.js.下载"></script>
+    
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><link rel="preload" href="./彻底弄懂JS事件委托的概念和作用_files/f.txt" as="script"><script type="text/javascript" src="./彻底弄懂JS事件委托的概念和作用_files/f.txt"></script><script src="./彻底弄懂JS事件委托的概念和作用_files/pubads_impl_2019082901.js.下载" async=""></script><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><link rel="prefetch" href="https://tpc.googlesyndication.com/safeframe/1-0-35/html/container.html"></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+    <a name="top"></a>
+    
+    
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<div style="display:none"><img src="./彻底弄懂JS事件委托的概念和作用_files/top.gif" alt="谨以此模板祝贺【博客园开发者征途】系列图书《你必须知道的.net》出版发行"></div>
+	<a href="https://www.cnblogs.com/soyxiaobi/"><img id="blogLogo" src="./彻底弄懂JS事件委托的概念和作用_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/soyxiaobi/">xiaobe</a>
+</h1>
+<h2>
+请叫我外部前端
+</h2>
+
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+    <li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+</li>
+    <li>
+<a href="https://home.cnblogs.com/u/soyxiaobi/">园子</a></li>
+    <li>
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/soyxiaobi/">
+首页</a>
+</li>
+    <li>
+
+<a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+</li>
+    <li>
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/xiaobe">
+联系</a></li>
+    <li>
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+    <li>
+<a id="blog_nav_rss" class="menu" href="https://www.cnblogs.com/soyxiaobi/rss/">
+订阅</a>
+        
+<a id="blog_nav_rss_image" href="https://www.cnblogs.com/soyxiaobi/rss/">
+    <img src="./彻底弄懂JS事件委托的概念和作用_files/xml.gif" alt="订阅">
+</a></li>
+</ul>
+
+
+
+		<div class="clear"></div>
+		<div class="blogStats">
+			
+			<!--done-->
+随笔- 
+85&nbsp;
+文章- 
+0&nbsp;
+评论- 
+160&nbsp;
+
+
+
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			
+<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/soyxiaobi/p/9498357.html">彻底弄懂JS事件委托的概念和作用</a>
+
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			
+<div id="cnblogs_post_body" class="blogpost-body cnblogs-markdown">
+    <h4 id="一写在前头">一、写在前头</h4>
+<p>&nbsp;&nbsp;&nbsp;接到某厂电话问什么是事件代理的时候,一开始说addEventListener,然后他说直接绑定新的元素不会报dom不存在的错误吗？然后我就混乱了,我印象中这个方法是可以绑定新节点的。后面才知道,原来他要考察的是事件委托(代理)的原理,他指的是未来还不清楚会创建多少个节点,所以没办法实现给他们注册事件。</p>
+<h4 id="二事件委托事件代理的作用">二、事件委托(事件代理)的作用?</h4>
+<p>为了方便理解,我先把事件委托的作用写一下。</p>
+<ol>
+<li>支持为同一个DOM元素注册多个同类型事件</li>
+<li>可将事件分成事件捕获和事件冒泡机制</li>
+</ol>
+<p>例子解析:</p>
+<ul>
+<li><p>注册多个事件</p>
+<blockquote>
+<p>用以往注册事件的方法,如果存在多个事件,后注册的事件会覆盖先注册的事件</p>
+</blockquote></li>
+</ul>
+<pre><code class="hljs javascript"><span class="hljs-comment">//index.html</span>
+&lt;div id=<span class="hljs-string">"div1"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+
+<span class="hljs-built_in">window</span>.onload = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">let</span> div1 = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'div1'</span>);
+    div1.onclick = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'打印第一次'</span>)
+    }
+    div1.onclick = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'打印第二次'</span>)
+    }
+}
+</code></pre>
+<p><img src="./彻底弄懂JS事件委托的概念和作用_files/1414709-20180818111239686-1865488448.png" alt="onclick"></p>
+<p>可以看到第二个点击注册事件覆盖了第一个注册事件,只执行了console.log('打印第二次');</p>
+<blockquote>
+<p>用addEventListener(type,listener,useCapture)实现</p>
+</blockquote>
+<ul>
+<li>type: 必须,String类型,事件类型</li>
+<li>listener: 必须,函数体或者JS方法</li>
+<li>useCapture: 可选,boolean类型。指定事件是否发生在捕获阶段。默认为false,事件发生在冒泡阶段</li>
+</ul>
+<pre><code class="hljs javascript">&lt;div id=<span class="hljs-string">"div1"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+
+<span class="hljs-built_in">window</span>.onload = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">let</span> div1 = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'div1'</span>);
+    div1.addEventListener(<span class="hljs-string">'click'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'打印第一次'</span>)
+    })
+    div1.addEventListener(<span class="hljs-string">'click'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'打印第二次'</span>)
+    })
+}</code></pre>
+<p><img src="./彻底弄懂JS事件委托的概念和作用_files/1414709-20180818111811025-1077949187.png" alt="addEventListener"></p>
+<p>可以看到两个注册事件都成功触发了。 useCapture是事件委托的关键,我们后面详解</p>
+<ul>
+<li>事件捕获和事件冒泡机制<br>
+</li>
+</ul>
+<ol>
+<li>事件捕获<br>
+当一个事件触发后,从Window对象触发,不断经过下级节点,直到目标节点。在事件到达目标节点之前的过程就是捕获阶段。<font color="red">所有经过的节点,都会触发对应的事件</font></li>
+<li>事件冒泡<br>
+当事件到达目标节点后，会沿着捕获阶段的路线原路返回。同样，<font color="red">所有经过的节点,都会触发对应的事件</font></li>
+</ol>
+<p><img src="./彻底弄懂JS事件委托的概念和作用_files/1414709-20180818123542724-735687837.png" alt="事件机制"></p>
+<p>通过例子理解两个事件机制:<br>
+<font color="#666">例子：假设有body和body节点下的div1均有绑定了一个注册事件.<br>
+效果：<br>
+&nbsp;&nbsp;&nbsp;&nbsp;当为事件捕获(useCapture:true)时,先执行body的事件,再执行div的事件<br>
+&nbsp;&nbsp;&nbsp;&nbsp;当为事件冒泡(useCapture:false)时,先执行div的事件,再执行body的事件</font></p>
+<pre><code class="hljs lua">//当useCapture为默认<span class="hljs-literal">false</span>时,为事件冒泡
+&lt;body&gt;
+    &lt;div id=<span class="hljs-string">"div1"</span>&gt;&lt;/div&gt;
+&lt;/body&gt;
+
+window.onload = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+    let body = document.querySelector(<span class="hljs-string">'body'</span>);
+    let div1 = document.getElementById(<span class="hljs-string">'div1'</span>);
+    body.addEventListener(<span class="hljs-string">'click'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+        console.<span class="hljs-built_in">log</span>(<span class="hljs-string">'打印body'</span>)
+    })
+    div1.addEventListener(<span class="hljs-string">'click'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+        console.<span class="hljs-built_in">log</span>(<span class="hljs-string">'打印div1'</span>)
+    })
+}
+
+//结果:打印div1  打印body</code></pre>
+<p><img src="./彻底弄懂JS事件委托的概念和作用_files/1414709-20180818125402271-1569816971.png" alt="事件冒泡"></p>
+<pre><code class="hljs lua">//当useCapture为<span class="hljs-literal">true</span>时,为事件捕获
+&lt;body&gt;
+    &lt;div id=<span class="hljs-string">"div1"</span>&gt;&lt;/div&gt;
+&lt;/body&gt;
+
+window.onload = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+    let body = document.querySelector(<span class="hljs-string">'body'</span>);
+    let div1 = document.getElementById(<span class="hljs-string">'div1'</span>);
+    body.addEventListener(<span class="hljs-string">'click'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+        console.<span class="hljs-built_in">log</span>(<span class="hljs-string">'打印body'</span>)
+    },<span class="hljs-literal">true</span>)
+    div1.addEventListener(<span class="hljs-string">'click'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+        console.<span class="hljs-built_in">log</span>(<span class="hljs-string">'打印div1'</span>)
+    })
+}
+
+//结果:打印body   打印div1</code></pre>
+<p><img src="./彻底弄懂JS事件委托的概念和作用_files/1414709-20180818125622131-318728159.png" alt="事件捕获"></p>
+<h4 id="三事件委托和新增节点绑定事件的关系">三、事件委托和新增节点绑定事件的关系？</h4>
+<p>事件委托的优点:</p>
+<ol>
+<li>提高性能:每一个函数都会占用内存空间，只需添加一个事件处理程序代理所有事件,所占用的内存空间更少。</li>
+<li>动态监听:使用事件委托可以自动绑定动态添加的元素,即新增的节点不需要主动添加也可以一样具有和其他元素一样的事件。<br>
+例子解析:</li>
+</ol>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+    <span class="hljs-built_in">window</span>.onload = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+        <span class="hljs-keyword">let</span> div = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'div'</span>);
+        
+        div.addEventListener(<span class="hljs-string">'click'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)</span>{
+            <span class="hljs-built_in">console</span>.log(e.target)
+        })
+        
+        <span class="hljs-keyword">let</span> div3 = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'div'</span>);
+        div3.setAttribute(<span class="hljs-string">'class'</span>,<span class="hljs-string">'div3'</span>)
+        div3.innerHTML = <span class="hljs-string">'div3'</span>;
+        div.appendChild(div3)
+    }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"div"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"div1"</span>&gt;</span>div1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"div2"</span>&gt;</span>div2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre>
+<p>虽然没有给div1和div2添加点击事件,但是无论是点击div1还是div2,都会打印当前节点。因为其父级绑定了点击事件,点击div1后冒泡上去的时候,执行父级的事件。</p>
+<blockquote>
+<p>分别点击div1、div2、div3</p>
+</blockquote>
+<p><img src="./彻底弄懂JS事件委托的概念和作用_files/1414709-20180818192807997-344061140.png" alt="事件委托"><br>
+这样无论后代新增了多少个节点,一样具有这个点击事件的功能。这一个就是考察者想要听到的答案。</p>
+
+</div>
+<div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block"><div id="BlogPostCategory">
+    分类: 
+            <a href="https://www.cnblogs.com/soyxiaobi/category/1280252.html" target="_blank">JS/ES6</a></div>
+
+
+    <div id="blog_post_info">
+<div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(9498357,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+        <a id="green_channel_follow" onclick="follow(&#39;cb31c9d1-8b8c-4df2-b7a0-08d5c68e6275&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./彻底弄懂JS事件委托的概念和作用_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./彻底弄懂JS事件委托的概念和作用_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/soyxiaobi/" target="_blank"><img src="./彻底弄懂JS事件委托的概念和作用_files/20180729105950.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/soyxiaobi/">xiaobe</a><br>
+            <a href="https://home.cnblogs.com/u/soyxiaobi/followees/">关注 - 4</a><br>
+            <a href="https://home.cnblogs.com/u/soyxiaobi/followers/">粉丝 - 61</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;cb31c9d1-8b8c-4df2-b7a0-08d5c68e6275&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(9498357,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">9</span>
+    </div>
+    <div class="buryit" onclick="votePost(9498357,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+    <div class="clear"></div>
+    <div id="post_next_prev">
+
+    <a href="https://www.cnblogs.com/soyxiaobi/p/9489444.html" class="p_n_p_prefix">« </a> 上一篇：    <a href="https://www.cnblogs.com/soyxiaobi/p/9489444.html" title="发布于 2018-08-16 19:46">真刀实战地搭建React+Webpack+Express搭建一个简易聊天室</a>
+    <br>
+    <a href="https://www.cnblogs.com/soyxiaobi/p/9507798.html" class="p_n_p_prefix">» </a> 下一篇：    <a href="https://www.cnblogs.com/soyxiaobi/p/9507798.html" title="发布于 2018-08-20 20:10">Chrome,你这坑人的默认非安全端口</a>
+
+</div>
+</div>
+		</div>
+		<div class="postDesc">posted @ 
+<span id="post-date">2018-08-18 19:33</span>&nbsp;<a href="https://www.cnblogs.com/soyxiaobi/">xiaobe</a> 阅读(<span id="post_view_count">12941</span>) 评论(<span id="post_comment_count">2</span>) <a href="https://i.cnblogs.com/EditPosts.aspx?postid=9498357" rel="nofollow"> 编辑</a> <a href="javascript:void(0)" onclick="AddToWz(9498357); return false;">收藏</a>
+</div>
+	</div>
+	
+	
+</div><!--end: topics 文章、评论容器-->
+<script src="./彻底弄懂JS事件委托的概念和作用_files/highlight.min.js.下载"></script>
+<script>markdown_highlight();</script>
+<script>
+    var allowComments = true, cb_blogId = 436456, cb_blogApp = 'soyxiaobi', cb_blogUserGuid = 'cb31c9d1-8b8c-4df2-b7a0-08d5c68e6275';
+    var cb_entryId = 9498357, cb_entryCreatedDate = '2018-08-18 19:33', cb_postType = 1; 
+    loadViewCount(cb_entryId);
+</script><a name="!comments"></a>
+<div id="blog-comments-placeholder">
+
+<div id="comment_pager_top">
+    
+</div>
+
+<!--done-->
+<br>
+<div class="feedback_area_title">发表评论</div>
+<div class="feedbackNoItems"><div class="feedbackNoItems"></div></div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;
+
+<span class="comment_actions">
+    
+    
+    
+    
+</span>
+
+
+				</div>
+				
+<a href="https://www.cnblogs.com/soyxiaobi/p/9498357.html#4190585" class="layer">#1楼</a>
+<a name="4190585" id="comment_anchor_4190585"></a>
+
+
+<span class="comment_date">2019-02-28 16:11</span>
+
+ | 
+
+            <a id="a_comment_author_4190585" href="https://www.cnblogs.com/zhusf/" target="_blank">zhusf</a>
+
+			</div>
+			<div class="feedbackCon">
+				
+<div id="comment_body_4190585" class="blog_comment_body">
+    挺不错的
+</div>
+        <div class="comment_vote">
+            <a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(&#39;4190585&#39;, &#39;Digg&#39;, this);">
+                支持(0)
+            </a>
+            <a href="javascript:void(0);" class="comment_burry" onclick="return voteComment(&#39;4190585&#39;, &#39;Bury&#39;, this);">
+                反对(0)
+            </a>
+        </div>
+        <span id="comment_4190585_avatar" style="display:none">
+            https://pic.cnblogs.com/face/1361905/20190814192041.png
+        </span>
+
+			</div>
+		</div>
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;
+
+<span class="comment_actions">
+    
+    
+    
+    
+</span>
+
+
+				</div>
+				
+<a href="https://www.cnblogs.com/soyxiaobi/p/9498357.html#4190630" class="layer">#2楼</a>
+<a name="4190630" id="comment_anchor_4190630"></a>
+[<span class="louzhu">楼主</span>]
+        <span id="comment-maxId" style="display:none">4190630</span>
+        <span id="comment-maxDate" style="display:none">2019/2/28 下午4:56:44</span>
+
+<span class="comment_date">2019-02-28 16:56</span>
+
+ | 
+
+            <a id="a_comment_author_4190630" href="https://www.cnblogs.com/soyxiaobi/" target="_blank">xiaobe</a>
+
+			</div>
+			<div class="feedbackCon">
+				
+<div id="comment_body_4190630" class="blog_comment_body">
+    <a href="https://www.cnblogs.com/soyxiaobi/p/9498357.html#4190585" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,4190585);">@</a>
+zhusf<br>☺️☺️
+</div>
+        <div class="comment_vote">
+            <a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(&#39;4190630&#39;, &#39;Digg&#39;, this);">
+                支持(0)
+            </a>
+            <a href="javascript:void(0);" class="comment_burry" onclick="return voteComment(&#39;4190630&#39;, &#39;Bury&#39;, this);">
+                反对(0)
+            </a>
+        </div>
+        <span id="comment_4190630_avatar" style="display:none">
+            https://pic.cnblogs.com/face/1414709/20180729105950.png
+        </span>
+
+			</div>
+		</div>
+
+<div id="comment_pager_bottom">
+    
+</div>
+
+
+</div>
+<script>
+    var commentManager = new blogCommentManager();
+    commentManager.renderComments(0);
+</script>
+
+<div id="comment_form" class="commentform">
+    <a name="commentform"></a>
+    <div id="divCommentShow"></div>
+    <div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/soyxiaobi/p/9498357.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/soyxiaobi/p/9498357.html#top">返回顶部</a></div>
+    <div id="comment_form_container"><div class="login_tips">
+    注册用户登录后才能发表评论，请 
+    <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a>
+     或 
+    <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，
+    <a href="https://www.cnblogs.com/">访问</a> 网站首页。
+</div></div>
+    <div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+    <div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-工控&#39;)">【推荐】超50万C++/C#源码: 大型实时仿真组态图形源码</a><br><a href="http://click.aliyun.com/m/1000074461/" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-阿里云&#39;)">【活动】阿里云910会员节多款云产品满减活动火热进行中</a><br><a href="https://www.ctyun.cn/activity/#/enterprise2?hmsr=%E5%8D%9A%E5%AE%A2%E5%9B%AD-0901-0%E5%85%83%E4%B8%8A%E4%BA%91&amp;hmpl=&amp;hmcu=&amp;hmkw=&amp;hmci=" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-天翼云&#39;)">【推荐】新手上天翼云，数十款云产品、新一代主机0元体验</a><br><a href="http://clickc.admaster.com.cn/c/a131574,b3595115,c1705,i0,m101,8a1,8b3,h" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-华为云微认证&#39;)">【推荐】零基础轻松玩转华为云产品，获壕礼加返百元大礼</a><br><a href="http://clickc.admaster.com.cn/c/a131575,b3595121,c1705,i0,m101,8a1,8b3,h" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-华为文字&#39;)">【推荐】华为云文字识别资源包重磅上市，1元万次限时抢购</a><br></div>
+    <div id="opt_under_post"></div>
+    <script async="async" src="./彻底弄懂JS事件委托的概念和作用_files/gpt.js.下载"></script>
+    <script>
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+    </script>
+    <script>
+        googletag.cmd.push(function () {
+            googletag.defineSlot("/1090369/C1", [300, 250], "div-gpt-ad-1546353474406-0").addService(googletag.pubads());
+            googletag.defineSlot("/1090369/C2", [468, 60], "div-gpt-ad-1539008685004-0").addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    </script>
+    <div id="cnblogs_c1" class="c_ad_block">
+        <div id="div-gpt-ad-1546353474406-0" style="height:250px; width:300px;" data-google-query-id="CJ7ph8j8uuQCFUo2lgodtYcB-A"><div id="google_ads_iframe_/1090369/C1_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/1090369/C1_0" title="3rd party ad content" name="google_ads_iframe_/1090369/C1_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" data-google-container-id="1" data-load-complete="true" src="./彻底弄懂JS事件委托的概念和作用_files/saved_resource.html"></iframe></div></div>
+    </div>
+    <div id="under_post_news"><div class="recomm-block"><b>相关博文：</b><br>·  <a title="事件委托和事件绑定" href="https://www.cnblogs.com/yangkangkang/p/5630295.html" target="_blank" onclick="clickRecomItmem(5630295)">事件委托和事件绑定</a><br>·  <a title="事件委托和事件绑定" href="https://www.cnblogs.com/xiangru0921/p/6669748.html" target="_blank" onclick="clickRecomItmem(6669748)">事件委托和事件绑定</a><br>·  <a title="彻底弄懂JS的事件冒泡和事件捕获（不推荐阅读）" href="https://www.cnblogs.com/qq9694526/p/5653728.html" target="_blank" onclick="clickRecomItmem(5653728)">彻底弄懂JS的事件冒泡和事件捕获（不推荐阅读）</a><br>·  <a title="理解js事件冒泡事件委托事件捕获" href="https://www.cnblogs.com/layaling/p/10620918.html" target="_blank" onclick="clickRecomItmem(10620918)">理解js事件冒泡事件委托事件捕获</a><br>·  <a title="JS中的事件绑定，事件捕获，事件冒泡以及事件委托，兼容IE" href="https://www.cnblogs.com/asylm/p/7428559.html" target="_blank" onclick="clickRecomItmem(7428559)">JS中的事件绑定，事件捕获，事件冒泡以及事件委托，兼容IE</a><br></div></div>
+    <div id="cnblogs_c2" class="c_ad_block">
+        <div id="div-gpt-ad-1539008685004-0" style="height:60px; width:468px;" data-google-query-id="CKjRhsj8uuQCFUo2lgodtYcB-A">
+            
+        <div id="google_ads_iframe_/1090369/C2_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/1090369/C2_0" title="3rd party ad content" name="google_ads_iframe_/1090369/C2_0" width="468" height="60" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" data-google-container-id="2" data-load-complete="true" src="./彻底弄懂JS事件委托的概念和作用_files/saved_resource(1).html"></iframe></div></div>
+    </div>
+    <div id="under_post_kb">
+<div class="itnews c_ad_block">
+    <b>最新 IT 新闻</b>:
+    <br>
+ ·              <a href="https://news.cnblogs.com/n/632658/" target="_blank">网易云音乐获阿里巴巴、云锋基金等7亿美元融资 网易仍绝对控股</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/632657/" target="_blank">人类与“永动机”的千年恩怨（四）：零点能？时间晶体？科学or科幻？</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/632656/" target="_blank">Facebook宣布在美国推出网络约会服务 股价涨2%</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/632655/" target="_blank">迄今最小加速传感器问世 有望用于手机导航和疾病监测系统</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/632654/" target="_blank">英特尔发布世界上最快的超级学术计算机Frontera</a>
+            <br>
+    » <a href="https://news.cnblogs.com/" title="IT 新闻" target="_blank">更多新闻...</a>
+</div></div>
+    <div id="HistoryToday" class="c_ad_block"></div>
+    <script type="text/javascript">
+        fixPostBody();
+        setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+        deliverAdT2();
+        deliverAdC1();
+        deliverAdC2();
+        loadNewsAndKb();
+        loadBlogSignature();
+LoadPostCategoriesTags(cb_blogId, cb_entryId);        LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+        GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+        loadOptUnderPost();
+        GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    </script>
+</div></div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<div id="sidebar_news" class="newsItem"><!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	
+<div id="blog-news">
+    
+    <div id="profile_block">
+        昵称：
+        <a href="https://home.cnblogs.com/u/soyxiaobi/">
+            xiaobe
+        </a>
+        <br>
+        园龄：
+        <a href="https://home.cnblogs.com/u/soyxiaobi/" title="入园时间：2018-06-03">
+            1年3个月
+        </a>
+        <br>
+        粉丝：
+        <a href="https://home.cnblogs.com/u/soyxiaobi/followers/">
+            61
+        </a>
+        <br>
+        关注：
+        <a href="https://home.cnblogs.com/u/soyxiaobi/followees/">
+            4
+        </a>
+        <div id="p_b_follow">
+<a href="javascript:void(0)" onclick="follow(&#39;cb31c9d1-8b8c-4df2-b7a0-08d5c68e6275&#39;)">+加关注</a></div>
+        <script>getFollowStatus('cb31c9d1-8b8c-4df2-b7a0-08d5c68e6275');</script>
+    </div>
+</div>
+</div>
+
+</div>
+
+			<div id="calendar"><div id="calendar"><div id="blog-calendar" style="display:none"></div></div>                
+                    <script>loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn">
+
+<!-- 搜索 -->
+<div id="sidebar_search" class="sidebar-block">
+    <div id="sidebar_search" class="mySearch">
+        <h3 class="catListTitle">搜索</h3>
+        <div id="sidebar_search_box">
+            <div id="widget_my_zzk" class="div_my_zzk">
+                <input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk">
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<!-- 常用链接 -->
+<div id="sidebar_shortcut" class="sidebar-block">
+    <div class="catListLink">
+<h3 class="catListTitle">
+常用链接
+</h3>
+<ul>
+		<li>
+
+<a href="https://www.cnblogs.com/soyxiaobi/p/" title="我的博客的随笔列表">我的随笔</a>
+</li>
+		<li>
+
+<a href="https://www.cnblogs.com/soyxiaobi/MyComments.html" title="我的发表过的评论列表">我的评论</a>
+</li>
+		<li>
+
+<a href="https://www.cnblogs.com/soyxiaobi/OtherPosts.html" title="我评论过的随笔列表">我的参与</a>
+</li>
+		<li>
+
+<a href="https://www.cnblogs.com/soyxiaobi/RecentComments.html" title="我的博客的评论列表">最新评论</a>
+</li>
+		<li>
+
+<a href="https://www.cnblogs.com/soyxiaobi/tag/" title="我的博客的标签列表">我的标签</a>
+</li>
+
+<li><a id="itemListLink" onclick="this.blur();WarpClass(&#39;itemListLink&#39;, &#39;itemListLin_con&#39;);return false;" href="https://www.cnblogs.com/soyxiaobi/p/9498357.html#">更多链接</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div>
+
+
+</div>
+
+<!-- 最新随笔 -->
+<div id="sidebar_recentposts" class="sidebar-block">
+    <div class="catListEssay">
+<h3 class="catListTitle">最新随笔</h3>
+<ul>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/soyxiaobi/p/11132978.html">1.防御性编程方法收集</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/soyxiaobi/p/11123416.html">2.css动画</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/soyxiaobi/p/11115720.html">3.react将多个公共组件归成一类，方便调用</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/soyxiaobi/p/11096940.html">4.react-router-dom下的BrowserRouter和HashRouter</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/soyxiaobi/p/11095875.html">5.初始化构建React+Ts项目时出现:Module build failed (from ./node_modules/css-loader/dist/cjs.js): CssSyntaxError</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/soyxiaobi/p/10574894.html">6.Dva三种方式实现dispatch的Promise回调</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/soyxiaobi/p/10567826.html">7.ES6多层解构</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/soyxiaobi/p/10564011.html">8.ES6解构过程添加一个默认值和赋值一个新的值</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/soyxiaobi/p/10557665.html">9.Antd-Pro2.0版本如何修改代理，让Mock变为真实服务器接口</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/soyxiaobi/p/10555400.html">10.git commit -m 提交的内容换行</a>
+
+                </li>
+			
+
+</ul>
+</div>
+
+
+</div>
+
+
+<!-- 我的标签 -->
+<div id="sidebar_toptags" class="sidebar-block">
+    
+</div>
+
+<!-- 积分与排名 -->
+<div id="sidebar_scorerank" class="sidebar-block">
+    <div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+    积分 -	
+118026
+    </li>
+	<li class="liRank">
+		排名 -	
+4292
+	</li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+<!-- 随笔分类、随笔档案、文章分类、新闻分类、相册、链接 -->
+<div id="sidebar_categories">
+    
+<div class="catListPostCategory">
+<h3 class="catListTitle">
+
+随笔分类
+<span style="font-size:11px;font-weight:normal">(157)</span>
+
+</h3>
+
+
+<ul>
+
+<li>
+<a href="https://www.cnblogs.com/soyxiaobi/category/1310956.html" rel="">
+    Ant-Design(8)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/soyxiaobi/category/1280253.html" rel="">
+    HTML5/CSS3(17)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/soyxiaobi/category/1280252.html" rel="">
+    JS/ES6(50)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/soyxiaobi/category/1280255.html" rel="">
+    Node.js(11)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/soyxiaobi/category/1280250.html" rel="">
+    React(30)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/soyxiaobi/category/1280258.html" rel="">
+    Webpack(8)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/soyxiaobi/category/1285804.html" rel="">
+    其他(33)
+</a>
+ 
+</li>
+
+</ul>
+
+
+</div>
+
+
+</div>
+
+<!-- 最新评论 -->
+<div id="sidebar_recentcomments" class="sidebar-block">
+    <div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div class="RecentCommentBlock">
+        <ul>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/soyxiaobi/p/9708518.html#4339734">1. Re:git项目,VSCode显示不同颜色块的含义</a></li>
+                    <li class="recent_comment_body">请教下 我之前的项目还有有颜色显示的，之后又打开的项目没有这些颜色了。楼主知道为什么吗？</li>
+                    <li class="recent_comment_author">--竹木狼马</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/soyxiaobi/p/9839497.html#4336788">2. Re:1024码农节-向自己致敬！</a></li>
+                    <li class="recent_comment_body">hahah，头回看还是去年呢，快一年快了，顶不住啦</li>
+                    <li class="recent_comment_author">--tdna</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/soyxiaobi/p/9554565.html#4325466">3. Re:webpack.config.js配置遇到Error: Cannot find module '@babel/core'&amp;&amp;Cannot find module '@babel/plugin-transform-react-jsx' 问题</a></li>
+                    <li class="recent_comment_body">谢谢</li>
+                    <li class="recent_comment_author">--东哥i</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/soyxiaobi/p/9531711.html#4318309">4. Re:解决github网站打开慢的问题</a></li>
+                    <li class="recent_comment_body">@ fly1231234赞。谢谢...</li>
+                    <li class="recent_comment_author">--西湖小兵啊</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/soyxiaobi/p/9531711.html#4318307">5. Re:解决github网站打开慢的问题</a></li>
+                    <li class="recent_comment_body">@ 西湖小兵啊可以试试天路云的教程配置。...</li>
+                    <li class="recent_comment_author">--fly1231234</li>
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+
+
+<!-- 阅读排行榜 -->
+<div id="sidebar_topviewedposts" class="sidebar-block">
+    <div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock">
+        <ul style="word-break:break-all">
+                    <li>
+                        <a href="https://www.cnblogs.com/soyxiaobi/p/9695931.html">
+                            1. MAC终端神器iterm2——告别黑白(43037)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/soyxiaobi/p/9554565.html">
+                            2. webpack.config.js配置遇到Error: Cannot find module '@babel/core'&amp;&amp;Cannot find module '@babel/plugin-transform-react-jsx' 问题(29876)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/soyxiaobi/p/9594557.html">
+                            3. 前端常见的布局方案大全(12987)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/soyxiaobi/p/9498357.html">
+                            4. 彻底弄懂JS事件委托的概念和作用(12937)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/soyxiaobi/p/9846057.html">
+                            5. 正确开启Mockjs的三种姿势：入门参考（一）(11735)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/soyxiaobi/p/9719864.html">
+                            6. 完美解决百度网盘、浏览器下载限速问题proxyee-down(附带win破解版云盘)(11504)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/soyxiaobi/p/9598761.html">
+                            7. 前端chrome浏览器调试总结(11500)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/soyxiaobi/p/9559117.html">
+                            8. React生命周期执行顺序详解(10004)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/soyxiaobi/p/9726838.html">
+                            9. Antd-Select组件的深入用法(9920)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/soyxiaobi/p/9616011.html">
+                            10. 彻底弄懂jsonp原理及实现方法(9570)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/soyxiaobi/p/9573897.html">
+                            11. React组件导入的两种方式(动态导入组件的实现)(7191)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/soyxiaobi/p/9708912.html">
+                            12. table固定列的宽度,超出部分用…代替(针对普通table和antd)(6586)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/soyxiaobi/p/9640729.html">
+                            13. 一行css解决图片统一大小后的拉伸问题(被冷漠的object-fit)(6336)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/soyxiaobi/p/9257609.html">
+                            14. 关于js中splice方法返回的结果(5956)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/soyxiaobi/p/9713814.html">
+                            15. JSON数据展示神器:react-json-view(常用于后台网站)(5543)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/soyxiaobi/p/9708518.html">
+                            16. git项目,VSCode显示不同颜色块的含义(5307)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/soyxiaobi/p/9679092.html">
+                            17. SourceTree/git解决pre-commit hook failed的问题(5171)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/soyxiaobi/p/9871379.html">
+                            18. 浅了解:react为何需要设定唯一key值(antd-table)(3683)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/soyxiaobi/p/9573767.html">
+                            19. React创建组件的三种方式及其区别(3296)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/soyxiaobi/p/9984491.html">
+                            20. antd Select进阶功能 动态更新、函数防抖(2860)
+                        </a>
+                    </li>
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+<!-- 评论排行榜 -->
+<div id="sidebar_topcommentedposts" class="sidebar-block">
+    <div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock">
+        <ul style="word-break:break-all">
+                    <li>
+                        <a href="https://www.cnblogs.com/soyxiaobi/p/9606120.html">
+                            1. 这三个月,我如何一点点地成长(海康前端实习)(43)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/soyxiaobi/p/9839497.html">
+                            2. 1024码农节-向自己致敬！(35)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/soyxiaobi/p/9898762.html">
+                            3. ES5 map循环一大坑：循环遍历竟然出现逗号！(18)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/soyxiaobi/p/9815285.html">
+                            4. JS快速构建数组方法(10)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/soyxiaobi/p/9554565.html">
+                            5. webpack.config.js配置遇到Error: Cannot find module '@babel/core'&amp;&amp;Cannot find module '@babel/plugin-transform-react-jsx' 问题(9)
+                        </a>
+                    </li>
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+<!-- 推荐排行榜 -->
+</div>
+                    <script>loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		<!--done-->
+Copyright © 2019 xiaobe
+<br><span id="poweredby">Powered by .NET Core 3.0 Preview 8 on Linux</span>
+
+
+ 谨以此模板祝贺【博客园开发者征途】系列图书之《你必须知道的.NET》出版发行
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+    
+
+
+</body></html>

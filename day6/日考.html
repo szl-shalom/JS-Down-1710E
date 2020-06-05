@@ -1,0 +1,57 @@
+<html>
+	
+	
+	
+	<head>
+		
+	</head>
+	
+	<body>
+		<div>
+		
+			<textarea>
+				
+			</textarea>
+			<span>140</span>
+			<button>提交</button>
+		</div>
+		
+		<ul>
+		
+		
+		</ul>
+		
+		<script>
+			var btn = document.querySelector("button"),
+				userMes = document.querySelector("textarea"),
+				ul = document.querySelector("ul"),
+				span = document.querySelector("span");
+			
+			btn.onclick = function(){
+				if(userMes.value.trim() === ""){
+				alert("不能为空")
+					return 
+				}
+			
+				var li  = document.createElement("li");
+				li.innerHTML = userMes.value;
+				var delBtn = document.createElement("button")
+				delBtn.innerHTML = "删除"
+				li.appendChild(delBtn)
+				ul.insertBefore(li,ul.firstElementChild)
+				
+				span.innerHTML = 140 - userMes.value.length
+				
+				
+				delBtn.onclick = function (){
+					delBtn.parentNode.remove()
+				}
+				
+			}
+		
+		</script>
+	</body>
+
+
+
+</html>

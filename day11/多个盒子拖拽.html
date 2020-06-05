@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+	
+	<style>
+		div{
+			border:1px solid #ccc;
+			height:200px;
+			width:200px;
+			display:inline-block;
+		}
+	
+	</style>
+</head>
+
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	
+	<script>
+		function drag(el){
+			var flag = false;
+			var pos = null;
+			el.addEventListener("mousedown",function(e){
+				pos = {
+					x:	e.offsetX,
+					y:  e.offsetY,
+				}
+				
+				flag = true
+				
+				el.style.position = "absolute";
+			})
+			document.addEventListener("mousemove",function(e){
+				if(flag){
+					var x = e.pageX - pos.x,
+						y = e.pageY - pos.y
+					
+					// 边界
+					if(x < 0) x = 0
+					if(y < 0) y = 0
+					
+					if(x>document.documentElement.clientWidth - el.offsetWidth) x = document.documentElement.clientWidth - el.offsetWidth
+					if(y>document.documentElement.clientHeight - el.offsetHeight) y = document.documentElement.clientHeight - el.offsetHeight
+					
+					
+					el.style.left = x  + "px"
+					el.style.top = 	y + "px"
+				}
+			})
+			document.addEventListener("mouseup",function(){
+				flag = false
+			})
+		}
+		
+		var divs = [...document.querySelectorAll("div")]
+		divs.forEach(function(item){
+			
+				drag(item)
+		})
+	</script>
+</body>
+
+</html>

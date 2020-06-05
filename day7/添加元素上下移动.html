@@ -1,0 +1,58 @@
+<html>
+
+	<body>
+		<textarea></textarea>
+		<button>添加</button>
+		
+		
+		<ul>
+		
+		
+		</ul>
+	
+		<script>
+			var textarea = document.querySelector("textarea"),
+				btn = document.querySelector("button"),
+				ul = document.querySelector("ul");
+			
+			btn.onclick = function (){
+				var userVal = textarea.value;
+				
+				var li = document.createElement("li")
+				li.innerHTML = userVal;
+				var btn1 = document.createElement("button"),
+				    btn2 = document.createElement("button"),
+				    btn3 = document.createElement("button");
+					
+					btn1.innerHTML = "上移";
+					btn2.innerHTML = "下移";
+					btn3.innerHTML = "删除";
+				li.appendChild(btn1)
+				li.appendChild(btn2)
+				li.appendChild(btn3)
+				
+				ul.appendChild(li)
+				//上移
+				btn1.onclick =function(){
+					btn1.parentNode.previousElementSibling ? ul.insertBefore(btn1.parentNode,btn1.parentNode.previousElementSibling):null
+					
+				}
+				//下移
+				btn2.onclick =function(){
+					btn2.parentNode.nextElementSibling ? ul.insertBefore(btn2.parentNode.nextElementSibling,btn2.parentNode):null
+					
+				}
+				// 删除
+				btn3.onclick =function(){
+					btn3.parentNode.remove()
+				}
+				
+				
+				
+			}
+		
+		</script>
+	</body>
+
+
+</html>

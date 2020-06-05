@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+	
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		
+		.mask{
+			width:100%;
+			height:100%;
+			position:fixed;
+			left:0;
+			top:0;
+			background-color:rgba(0,0,0,.3)
+		}
+		.box{
+			width:300px;
+			height:300px;
+			margin:250px auto;
+			background:white;
+		}
+	</style>
+</head>
+
+<body>
+	<button>点我打开</button>
+	
+	<script>
+		var btn = document.querySelector("button");
+		
+		btn.onclick = function (){
+			var div = document.createElement("div")
+			div.classList.add("mask")
+			document.body.appendChild(div)
+			
+			var minDiv = document.createElement("div")
+			minDiv.classList.add("box")
+			div.appendChild(minDiv)
+			
+			var btnLeft = document.createElement("button"),
+			    btnRight = document.createElement("button");
+				
+			btnLeft.innerHTML = "确认"
+			btnRight.innerHTML = "取消"
+			
+			minDiv.appendChild(btnLeft)
+			minDiv.appendChild(btnRight)
+			
+			// 两秒之后干点坏事
+			setTimeout(function(){
+				div.remove()
+			},5000)
+			
+			btnLeft.onclick = function (){
+				location.href = "123123.html"
+			}
+			
+			btnRight.onclick = function(){
+				div.remove()
+			}
+			
+		}
+	
+	
+	</script>
+</body>
+
+</html>

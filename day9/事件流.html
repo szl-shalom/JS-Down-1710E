@@ -1,0 +1,72 @@
+<html>
+	
+	<style>
+	
+		*{
+			margin:0;
+			padding:0;
+			
+		}
+		div{
+			padding:20px;
+			border:1px solid #ccc;
+		}
+		
+	
+	</style>
+	
+	<body>
+		 
+		<div class="box1">
+		1
+			<div  class="box2">
+			2
+				<div  class="box3">
+				3
+				</div>
+			</div>
+		</div>
+			
+
+		<script>
+			// 事件流：是事件的一种传播机制
+			
+			// 事件传播三个阶段
+			
+			// 1、捕获
+			// 2、目标
+			// 3、冒泡
+			
+			
+			// DOM0级事件  1、只有冒泡阶段  
+					//     2、会发生事件覆盖  后设覆盖先设
+			// DOM2级事件  1、包含冒泡和捕获   
+					//     2、不会发生覆盖  并且会根据事件的添加顺序 依次触发
+			
+			// DOM2级事件语法
+			// 语法： el.addEventListener(type,fn,[boolean])
+			// 参数：type是字符串 事件类型
+			//       fn是一个函数 事件处理函数
+			//       boolean是一个布尔值  true代表捕获  false代表冒泡（默认）
+			
+			var box1 = document.querySelector(".box1"),
+				box2 = document.querySelector(".box2"),
+			    box3 = document.querySelector(".box3")
+			
+		
+			box1.addEventListener("click",function(e){
+				// 事件对象:当事件发生时，由浏览器传递给事件驱动函数的第一个参数；
+				//          保留着当前事件的一些信息
+				console.log(e)
+				
+			})
+		
+			
+			
+		
+		</script>
+	
+	</body>
+
+
+<html>

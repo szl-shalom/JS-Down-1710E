@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        .left {
+            width: 500px;
+            height: 700px;
+            float: left;
+        }
+
+        .left .top {
+            width: 500px;
+            height: 500px;
+            position: relative;
+        }
+
+        .left .bottom {
+            width: 500px;
+            height: 200px;
+        }
+
+        .left .bottom img {
+            width: 100px;
+            height: 200px;
+            padding: 40px 2px;
+            float: left;
+        }
+
+        .left .top img {
+            width: 500px;
+            height: 500px;
+            position: relative;
+        }
+
+        .left .top .mask {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(0, 0, 0, .3);
+            left: 0;
+            top: 0;
+            display: none;
+        }
+
+        .right {
+            float: left;
+            width: 500px;
+            height: 500px;
+
+            overflow: hidden;
+            margin-left: 20px;
+            position: relative;
+
+        }
+
+        .right img {
+            position: absolute;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="left">
+        <div class="top">
+            <img src="../day3/img/7.jpg" alt="">
+            <div class="mask"></div>
+        </div>
+        <div class="bottom">
+            <img src="../day3/img/2.jpg" alt="">
+            <img src="../day3/img/3.jpg" alt="">
+            <img src="../day3/img/4.jpg" alt="">
+            <img src="../day3/img/7.jpg" alt="">
+            <img src="../day3/img/6.jpeg" alt="">
+        </div>
+    </div>
+    <div class="right">
+        <img src="../day3/img/7.jpg" alt="">
+    </div>
+
+    <script>
+        var right = document.querySelector(".right"),
+            myTop = document.querySelector(".top"),
+            bottom = document.querySelector(".bottom"),
+            mask = document.querySelector(".mask"),
+            img = document.querySelector(".right img");
+            topImg = document.querySelector(".top img");
+
+        bottom.addEventListener("mouseover", function (e) {
+            var tar = e.target;
+            if (tar.nodeName === "IMG") {
+                topImg.src = tar.src;
+            }
+        })
+        myTop.addEventListener("mouseenter", function () {
+            mask.style.display = "block"
+            var minWidth = mask.offsetWidth,
+                maxWidth = myTop.offsetWidth;
+            // 设置右边图片的大小
+            img.style.display = "block"
+            img.src = topImg.src;
+            img.style.width = maxWidth * maxWidth / minWidth + "px"
+            img.style.height = maxWidth * maxWidth / minWidth + "px"
+        })
+
+        myTop.addEventListener("mousemove", function (e) {
+            var x = e.pageX - mask.offsetWidth / 2,
+                y = e.pageY - mask.offsetHeight / 2;
+            if (x < 0) x = 0;
+            if (y < 0) y = 0;
+            if (x > myTop.offsetWidth - mask.offsetWidth) x = myTop.offsetWidth - mask.offsetWidth
+            if (y > myTop.offsetHeight - mask.offsetHeight) y = myTop.offsetHeight - mask.offsetHeight
+            mask.style.left = x + "px"
+            mask.style.top = y + "px"
+            img.style.left = - myTop.offsetWidth * x / mask.offsetWidth + "px"
+            img.style.top = - myTop.offsetWidth * y / mask.offsetWidth + "px"
+
+        })
+        myTop.addEventListener("mouseleave", function () {
+            mask.style.display = "none"
+            img.style.display = "none"
+        })
+    </script>
+</body>
+
+</html>

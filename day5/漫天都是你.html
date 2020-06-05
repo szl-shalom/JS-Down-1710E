@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+	<script>
+		function random(n,m){
+			return Math.floor(Math.random() * ( m - n +1) + n)
+		}
+		var clientWidth = window.innerWidth,
+			clientHeight = window.innerHeight;
+			
+			console.log(clientHeight,clientWidth)
+		setInterval(function(){
+			if(document.body.children.length>10){
+				return ;
+			}
+			// 创建节点
+			var img = document.createElement("img");
+			// 修改路径
+			img.src = "./xinxin.gif";
+			// 随机大小
+			var imgWidth = random(50,200)
+			img.width = imgWidth;
+			img.height = imgWidth;
+			// 随机位置
+			img.style.position = "absolute";
+			img.style.left = random(0,clientWidth - imgWidth) + "px"
+			img.style.top = random(0,clientHeight - imgWidth) + "px"
+			// 添加节点
+			document.body.appendChild(img)
+			
+			// 添加点击事件
+			img.onclick = function(){
+				img.remove()
+			}
+			
+			
+			
+		},100)
+	
+	
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<html>
+
+	<body>	
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+			<li>9</li>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+			<li>9</li>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+			<li>9</li>
+		</ul>
+		
+		<button>开始点名</button>
+		
+		<script>
+			var  btn = document.querySelector("button"),
+				 lis = document.querySelectorAll("li");
+			btn.onclick = function(){
+				var timer = setInterval(function(){
+					lis.forEach(function(item){
+						item.style.background = "#" + Math.random().toString(16).substr(2,6)
+					})
+				},100)
+				
+				setTimeout(function(){
+					clearInterval(timer)
+					lis.forEach(function(item){
+						item.style.background = "white"
+					})
+					var index = Math.floor(Math.random() * lis.length)
+					lis[index].style.background = "#" + Math.random().toString(16).substr(2,6)
+					
+				},3000)
+			}
+		
+		</script>
+	</body>
+
+
+
+
+
+
+</html>

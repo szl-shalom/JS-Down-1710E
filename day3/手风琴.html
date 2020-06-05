@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+
+        }
+
+        ul {
+            position: absolute;
+            width: 900px;
+            overflow: hidden; 
+            height: 300px;
+        }
+
+        ul li {
+            position: absolute;
+            width: 500px;
+            list-style: none;
+            transition: left 1s;
+        }
+
+        ul li:nth-child(2) {
+            left: 100px;
+        }
+
+        ul li:nth-child(3) {
+            left: 200px
+        }
+
+        ul li:nth-child(4) {
+            left: 300px
+        }
+
+        ul li:nth-child(5) {
+            left: 400px;
+        }
+
+
+        img {
+            width: 500px;
+            height: 300px
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li><img src="./img/2.jpg" alt=""></li>
+        <li><img src="./img/3.jpg" alt=""></li>
+        <li><img src="./img/4.jpg" alt=""></li>
+        <li><img src="./img/6.jpeg" alt=""></li>
+        <li><img src="./img/7.jpg" alt=""></li>
+    </ul>
+    <script>
+        var lis = document.querySelectorAll("li")
+
+        lis.forEach(function (item, index) {
+            item.onmouseenter = function () {
+                lis.forEach(function (item, ind) {
+                    index >= ind ? item.style.left = ind * 100 + "px" : item.style.left = ind * 100 + 400 + "px"
+                })
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+	
+	<style>
+		*{
+			margin:0;
+			padding:0;
+			box-sizing:border-box;
+		}
+	
+		.wrap{
+			width:800px;
+			margin:100px auto;
+		}
+		
+		.header{
+			width:100%;
+			min-height:60px;
+			border:1px solid #ccc;
+		}
+		
+		.header button,.footer button{
+			height:40px;
+			margin:10px;
+			border:1px solid #ccc;
+			padding:0 20px;
+		}
+		
+		.header .tag{
+			float:right;
+		}
+		
+		.footer{
+			border:1px solid #ccc;
+			padding:10px;
+			margin-top:20px;
+			display:none;
+		}
+		
+		.footer.active{
+			display:block;
+		}
+	
+	</style>
+</head>
+
+<body>
+	<div class="wrap">
+		<div class="header">
+			<button class="tag">展开标签库</button>
+
+		</div>
+		
+		<div class="footer">
+		</div>
+	</div>
+	
+	<script>
+		// 克隆元素
+		// 语法：el.cloneNode(boolean)
+		// 参数：boolean 为真 代表深度克隆
+					  // 为假 代表浅克隆 
+		// 返回值 ：克隆出来的节点	
+		var res = document.body.cloneNode(false)
+		console.log(res)
+	
+	
+		var tag = document.querySelector(".tag"),
+			footer = document.querySelector(".footer"),
+			header = document.querySelector(".header"),
+			arr = ["标签一","标签一","标签二","标签三","标签四","标签五","标签六","标签七"];// 数据模拟
+			
+		
+		// 数据渲染
+		footer.innerHTML = arr.map(function(item,index){
+			return `<button ind = ${index}>${item}</button>`
+		}).join("")
+		
+		// 渲染之后获取标签库按钮
+		
+		var btns = [...document.querySelectorAll(".footer button")];
+		
+		// 循环遍历数组
+		btns.forEach(function(item,index){
+		// 添加点击事件
+			item.onclick = function(){
+				// 克隆节点
+				var node = item.cloneNode(true)
+				// 将克隆的节点放到header
+				header.appendChild(node)
+				//禁用
+				item.disabled = true;
+				//给克隆的元素添加点击事件
+				node.onclick = function(){
+				    // 获取克隆的元素的自定义属性ind
+					var i  = node.getAttribute("ind");
+					// 循环遍历下面的标签库
+					btns.forEach(function(item){
+						// 上下自定义属性相同  条件成立 接触禁用
+						item.getAttribute("ind") === i ? item.disabled = false : null;
+					})
+					
+					// 移除克隆元素
+					node.remove()
+					
+				}
+			}
+		})
+		
+			
+		tag.onclick = function (){
+		// el.classList.toggle("类名")
+			footer.classList.toggle("active")
+			tag.innerHTML === "展开标签库" ?  tag.innerHTML = "收起标签库" : tag.innerHTML = "展开标签库"	
+		}
+	
+	</script>
+</body>
+
+</html>

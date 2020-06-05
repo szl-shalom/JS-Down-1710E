@@ -1,0 +1,44 @@
+<html>
+	<head>
+		 <style>
+			span{
+				display:none;
+			}
+			
+			span.active{
+				display:inline;
+			}
+		 
+		 </style>
+	
+	</head>
+	
+	
+	<body>
+	
+		<input type = "text">  <span>格式不正确</span><br>
+		<input type = "text">  <span>格式不正确</span><br>
+		<input type = "text">  <span>格式不正确</span><br>
+		<input type = "text">  <span>格式不正确</span><br>
+		<input type = "text">  <span>格式不正确</span><br>
+		
+		
+		<script>
+			var ipts = [...document.querySelectorAll("input")];
+			// 循环遍历数组
+			ipts.forEach(function (item){
+				// 添加失去焦点事件
+				item.onblur = function (){
+					//验证
+					item.value.length < 6 ? item.nextElementSibling.classList.add("active"):null
+				}
+			})	
+			
+		</script>
+		
+		
+	</body>
+	
+
+
+</html>

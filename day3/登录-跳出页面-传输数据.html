@@ -1,0 +1,43 @@
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+	
+	</head>
+	<body>
+		<input type="text" placeholder = "请输入用户名">
+		<input type="text" placeholder = "请输入密码">
+		<input type="text" placeholder = "请输入验证码">
+		<span>652s</span>
+		<button>点击获取验证码</button>
+		<button>登录</button>
+		
+	</body>
+	
+	
+	<script>
+		var  btns = document.querySelectorAll("button"),
+			 span = document.querySelector("span"),
+			 ipts = document.querySelectorAll("input");
+		
+		
+		
+		btns[0].onclick = function (){
+			  span.innerHTML =  Math.random().toString(36).slice(2,6)
+		}
+		
+		btns[1].onclick = function (){
+			if(ipts[2].value !== span.innerHTML){
+				alert("验证码不正确！！！！")
+			}else if(ipts[0].value.length < 6 || ipts[1].value.length < 6  ){
+				alert("格式不正确")
+			}else{
+				alert("准备跳转页面！！！！！")
+				location.href = `./接收数据.html?username=${ipts[0].value}&password=${ipts[1].value}`
+			}
+		}
+	
+	</script>
+
+
+</html>

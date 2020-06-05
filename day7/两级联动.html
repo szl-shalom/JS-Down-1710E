@@ -1,0 +1,56 @@
+<html>
+	<body>
+	
+		<select class="sheng"></select>
+		
+		<select class="shi"></select>
+		<script>
+		// 模拟数据
+			var arr = [{
+				sheng:"河北",
+				children:["邯郸","石家庄","张家口"]
+			},{
+				sheng:"河南",
+				children:["郑州","洛阳","许昌"]
+			},{
+				sheng:"山西",
+				children:["长治","太原","晋城"]
+			},{
+				sheng:"山东",
+				children:["济南","菏泽","青岛"]
+			},{
+				sheng:"上海",
+				children:["奉贤区","徐汇区","浦东新区"]
+			}];
+			var sheng = document.querySelector(".sheng"),
+				shi = document.querySelector(".shi");
+			// 封装渲染省函数
+			function renderSheng(){
+				sheng.innerHTML = arr.map(function(item){
+					return `<option>${item.sheng}</option>`
+				}).join("")
+			}
+			//封装渲染市函数
+			function renderShi(arr){
+				shi.innerHTML = arr.map(function(item){
+					return `<option>${item}</option>`
+				}).join("")
+				
+			}
+			// 调用渲染省函数
+			renderSheng()
+			//添加监听值改变事件
+			sheng.onchange = function (){
+				// 获取下标
+				var  index =  sheng.selectedIndex
+				// 获取数据
+				var res = arr[index].children 
+				// 调用渲染市函数
+				renderShi(res)
+			}
+		</script>
+	
+	</body>
+
+
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+	
+</head>
+
+<body>
+
+	<div class="wrap">
+		<div class="header">
+			<input type="text" placeholder="请输入城市名">
+			<input type="text" placeholder="请输入拼音缩写">
+			<input type="text" placeholder="请输入拼音首字母缩写">
+				<button class="submit">提交数据</button>
+			</div>
+		
+		<div class="serach">
+			<input type="text" class="userMes" placeholder="请输入关键字">
+			<button class="search-btn" >搜索</button>
+		</div>
+		
+		<div class="history">
+			历史记录：
+		</div>
+		
+		<div class="content">
+			<ul>
+				<li>城市：邯郸</li>
+			</ul>
+		</div>
+	
+	</div>
+
+	<script>
+		// 封装渲染函数	
+		function render(data){
+			ul.innerHTML = data.map(function(item){
+				return `<li>城市：${item.city}</li>`
+			}).join("")
+		}
+	
+		// 自行模拟数据
+		var  arr = [{
+			city:"邯郸",
+			pinyin:"handan",
+			fitstWord:"hd"
+		},{
+			city:"甘肃",
+			pinyin:"gansu",
+			fitstWord:"gs"
+		},{
+			city:"河南",
+			pinyin:"henan",
+			fitstWord:"hn"
+		},{
+			city:"石家庄",
+			pinyin:"shijiazhuang",
+			fitstWord:"sjz"
+		},{
+			city:"山西",
+			pinyin:"shanxi",
+			fitstWord:"sx"
+		},{
+			city:"河北",
+			pinyin:"hebei",
+			fitstWord:"hb"
+		}]	
+	
+		
+		
+		var ul = document.querySelector("ul"),// 渲染的节点
+			userMes = document.querySelector(".userMes"),// 用户输入的节点
+			myHistory = document.querySelector(".history"),// 历史记录节点
+			submit = document.querySelector(".submit")
+			btn = document.querySelector(".search-btn");// 搜索按钮
+		// 数据渲染
+		render(arr)
+			
+		//点击事件
+		btn.onclick = function (){
+			// 获取用户输入的值
+			var val = userMes.value
+			// 模糊搜索
+			var res = arr.filter(function(item){
+				return item.city.includes(val) || item.pinyin.includes(val) || item.fitstWord.includes(val)
+			})
+			// 调用渲染函数
+			render(res)
+			
+			// 添加历史记录
+			var span = document.createElement("span")
+			span.innerHTML = val
+			
+			myHistory.appendChild(span)
+			
+		}
+		
+		
+		// 提交数据点击事件
+		submit.onclick = function (){
+			var inputs = [...document.querySelectorAll(".header input")]
+			var obj = {
+				city:inputs[0].value,
+				pinyin:inputs[1].value,
+				fitstWord:inputs[2].value
+			}
+			
+			arr.push(obj)
+			// 重新渲染
+			render(arr)
+		}
+		
+
+			
+		
+		
+	
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<html>
+
+	
+	<body>
+		<input type="text">
+		<button>123</button>
+		<ul style="display:none;">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		
+		</ul>
+	
+	</body>
+	
+	<script>
+		//1.正确的通过DOM2级方式给文本框绑定输入事件（20分）
+		//2.用户输入内容后，显示列表（20分）
+		//3.正确的通过DOM2级方式为所有的列表绑定单击事件（30分）
+		//4.将选中项显示到文本框中（30分）
+		
+		
+		//获取必要的节点
+		var input = document.querySelector("input"),
+			ul = document.querySelector("ul");
+			
+		
+		
+		// 添加输入事件
+		input.addEventListener("input",function(){
+			ul.style.display = "block";
+		});
+		
+		
+		
+		// 循环绑定点击事件
+		[...ul.children].forEach(function(item){
+			item.addEventListener("click",function(){
+				input.value =   item.innerHTML
+				ul.style.display = "none";
+			})
+		})
+		
+		
+		
+	</script>
+
+</html>

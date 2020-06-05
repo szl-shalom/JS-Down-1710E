@@ -1,0 +1,123 @@
+<html>
+	<head>
+		<style>
+			*{
+				margin:0;
+				padding:0;
+			}
+			
+			.mask{
+				display:none;
+				width:100%;
+				height:100%;
+				position:fixed;
+				left:0;
+				top:0;
+				background:rgba(0,0,0,.3);
+			}
+			
+			.box{
+				margin:150px auto;
+				width:500px;
+				height:500px;
+				background:white;
+				padding:20px;
+			}
+			
+			span{
+				display:none;
+			}
+		
+		</style>
+	
+	</head>
+
+	<body>
+		<button>打开弹框</button>
+		<div class="mask">
+			<div class="box">
+				<div>
+					<input type = "text">
+					<span>不可以为空！</span>
+				</div>
+				
+				<div>
+					<input type = "text">
+					<span>不可以为空！</span>
+				</div>
+				
+				
+				<div>
+					<input type = "text">
+					<span>不可以为空！</span>
+				</div>
+				
+				
+				<button class="login">登录</button>
+				<button class="close">关闭</button>
+			</div>
+		</div>
+		
+		
+		
+		<script>
+		//1.正确实现页面的布局 （8分）
+		//2.正确绑定点击事件 （8分）
+		//3.正确实现点击dome1，弹框展示。（8分）
+		//4.正确实现遮罩的展示。（8分）
+		//5.正确实现昵称的非空验证（8分）
+		//6.正确实现手机号的非空验证（8分）
+		//7.正确实现地址的非空验证（8分）
+		//8.正确展示非空验证提示的位置（8分）
+	    //9.正确实现手机号的校验（8分）
+		//10.正确实现点击关闭，遮罩和弹框关闭。（8分）
+		//11.正确实现点击的确认提交，实现页面的跳转（能跳转即可，页面可自行创建）（8分）
+		//12.正确实现跳转页面参数在地址栏的传递（8分）。
+		//13.合理添加注释。（4分）
+		
+		
+		// 类数组转化为数组
+		// 1.  [...类数组]
+		// 2.  Array.from(类数组)
+		// 3.1  Array.prototype.slice.call(类数组)
+		// 3.2  [].slice.call(类数组)
+		       
+		
+		var  btn = document.querySelector("button"),
+		     mask = document.querySelector(".mask"),
+			 login = document.querySelector(".login"),
+			 inputs= [...document.querySelectorAll("input")],
+			 close = document.querySelector(".close");
+		
+		
+			btn.onclick = function (){
+				mask.style.display = "block";
+			}
+			
+			login.onclick = function(){
+				// 验证非空
+				inputs.forEach(function(item,index){
+					item.value === "" ? item.nextElementSibling.style.display = "block" :item.nextElementSibling.style.display = "none"
+				})
+				
+				// 验证登录
+				var res = inputs.every(function(item,index){
+					return  item.value !== "" 
+				})
+				
+				if(res){
+					location.href = "http://172.16.10.119:8080/bwie/mhIndex.do?m=index"
+				}
+				
+				
+				
+			}
+			close.onclick = function (){
+				mask.style.display = "none"
+			}
+			
+		
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)https://www.cnblogs.com/zhuzhenwei918/p/6142228.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    <meta property="og:description" content="JavaScript事件类型 Web浏览器中可能发生的事件有很多类型。这里我将主要将下面几种常用的事件类型： UI事件 焦点事件 鼠标与滚轮事件 键盘与文本事件 复合事件 变动事件 HTML5事件 设">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>JavaScript事件类型 - Wayne-Zhu - 博客园</title>
+    
+    <link rel="stylesheet" href="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/blog-common.min.css">
+    <link id="MainCss" rel="stylesheet" href="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/bundle-red_autumnal_leaves.min.css">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/bundle-red_autumnal_leaves-mobile.min.css">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/zhuzhenwei918/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/zhuzhenwei918/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/zhuzhenwei918/wlwmanifest.xml">
+    <script src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/amp4ads-host-v0.js.下载"></script><script src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/pubads_impl_rendering_2019082901.js.下载"></script><script async="" src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/analytics.js.下载"></script><script type="text/javascript" src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/encoder.js.下载"></script><script src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/jquery-2.2.0.min.js.下载"></script>
+    <script src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/blog-common.min.js.下载"></script>
+    <script>
+        var currentBlogId = 311524;
+        var currentBlogApp = 'zhuzhenwei918';
+        var cb_enable_mathjax = false;
+        var isLogined = false;
+    </script>
+    
+    
+    
+<link rel="preload" href="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/f.txt" as="script"><script type="text/javascript" src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/f.txt"></script><script src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/pubads_impl_2019082901.js.下载" async=""></script><link rel="prefetch" href="https://tpc.googlesyndication.com/safeframe/1-0-35/html/container.html"></head>
+<body>
+    <a name="top"></a>
+    <div id="page_begin_html">
+        <h3 style="padding: 8px; text-indent: 2em; display: none;" onclick="加油，保底BAT，争取SPECIAL！">曾经，我非常羡慕那些人见人爱的人，我也想要变成那样，可是后来我才明白人见人爱也是需要天赋的，后来我开始默默努力，我想，就算我不能让每个人都喜欢我，至少因为我做的努力能得到别人的尊重。</h3>
+    </div>
+    
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+        <a id="lnkBlogLogo" href="https://www.cnblogs.com/zhuzhenwei918/"><img id="blogLogo" src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/logo.gif" alt="返回主页"></a>		
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/zhuzhenwei918/">Wayne  Zhu</a>
+</h1>
+<h2>
+Keep looking, don't settle.
+</h2>
+
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+</li>
+<li>
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/zhuzhenwei918/">
+首页</a>
+</li>
+<li>
+
+<a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+</li>
+<li>
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/Wayne-Zhu">
+联系</a></li>
+<li>
+
+<!--<partial name="./Shared/_XmlLink.cshtml" model="Model" /></li>--></li>
+<li>
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+</ul>
+
+
+		<div class="blogStats">
+			
+			<span id="stats_post_count">随笔 - 
+524&nbsp; </span>
+<span id="stats_article_count">文章 - 
+0&nbsp; </span>
+<span id="stats-comment_count">评论 - 
+240</span>
+
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="post_detail">
+    <!--done-->
+    <div id="topics">
+        <div class="post">
+            <h1 class="postTitle">
+                
+<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/zhuzhenwei918/p/6142228.html">JavaScript事件类型</a>
+
+            </h1>
+            <div class="clear"></div>
+            <div class="postBody">
+                
+<div id="cnblogs_post_body" class="blogpost-body ">
+    <h1>JavaScript事件类型</h1>
+<p>　　Web浏览器中可能发生的事件有很多类型。这里我将主要将下面几种常用的事件类型：</p>
+<ul>
+<li>UI事件</li>
+<li>焦点事件</li>
+<li>鼠标与滚轮事件</li>
+<li>键盘与文本事件</li>
+<li>复合事件</li>
+<li>变动事件</li>
+<li>HTML5事件</li>
+<li>设备事件</li>
+<li>触摸与手势事件</li>
+</ul>
+<p>　　</p>
+<h2>第一部分：UI事件</h2>
+<p>　　UI事件中UI即(<strong>User Interface,用户界面</strong>)，当用户与页面桑拿的元素交互时触发。</p>
+<p><strong>　　UI事件中主要包括load,unload,abort,error,select,resize,scroll事件。</strong></p>
+<p><strong>1.load事件</strong></p>
+<p><strong>　　　<span style="color: #ff6600;">此事件为当页面完全加载完之后（包括所有的图像、js文件、css文件等外部资源），就会触发window上面的load事件。</span></strong></p>
+<p><strong>　　　</strong>这个事件是JavaScript中最常用的事件，比如我们经常会使用window.onload=function(){};这种形式，即当页面完全加载完之后执行其中的函数。</p>
+<p>　　 &nbsp; 另外，之前一直都不知道，这个事件还可以用在其他元素上，比如图像元素，如下所示：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">img </span><span style="color: #ff0000;">src</span><span style="color: #0000ff;">="smile.png"</span><span style="color: #ff0000;"> onload</span><span style="color: #0000ff;">="alert('loaded')"</span><span style="color: #0000ff;">&gt;　　</span></pre>
+</div>
+<p><strong>　　　</strong>即当图片完全加载出来之后会有弹窗。当然也可以使用JS来实现，如下所示：</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_683318" class="syntaxhighlighter  html"><div class="toolbar"><span><a href="https://www.cnblogs.com/zhuzhenwei918/p/6142228.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="html plain">var img=document.getElementById("img");</code></div><div class="line number2 index1 alt1"><code class="html plain">EventUtil.addHandler(img,"load",function(){</code></div><div class="line number3 index2 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">event=EventUtil.getEvent(event);</code></div><div class="line number4 index3 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">alert(EventUtil.getTarget(event).src);</code></div><div class="line number5 index4 alt2"><code class="html plain">});</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>　　</p>
+<p><strong>2.unload事件</strong></p>
+<p><strong>　　　</strong>显然，这个事件是与load事件相对的。<span style="color: #ff9900;">在文档被完全卸载后触发。用户从一个页面切换到另一个页面就会触发unload时间。<span style="color: #ff0000;">利用这个事件最多的情况是清楚引用，避免内存泄漏。</span></span></p>
+<p><span style="color: #ff9900;"><span style="color: #ff0000;">　　　<span style="color: #000000;">这个事件同样有两种方式来指定。一种是JavaScript方式，使用EventUtil.addHandler()；另一种就是在body元素中添加一个特性。</span></span></span></p>
+<p><span style="color: #ff9900;"><span style="color: #ff0000;"><span style="color: #000000;">　　 &nbsp; 值得注意的是，一定要小心编写onload事件中的代码，因为它是在页面卸载后才触发，所以说页面加载后存在的那些对象，在onload触发之后就不一定存在了！</span></span></span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">body </span><span style="color: #ff0000;">onload</span><span style="color: #0000ff;">="alert('changed')"</span><span style="color: #0000ff;">&gt;</span></pre>
+</div>
+<p>&nbsp;</p>
+<p><strong><span style="color: #ff9900;"><span style="color: #ff0000;"><span style="color: #000000;">3.resize事件</span></span></span></strong></p>
+<p><strong><span style="color: #ff9900;"><span style="color: #ff0000;"><span style="color: #000000;">　　 &nbsp;<span style="color: #ff0000;">当调整浏览器的窗口到一个新的宽度或高度时，就会触发resize事件。这个事件在window（窗口）上面触发。</span></span></span></span></strong><span style="color: #ff9900;"><span style="color: #ff0000;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">因此同样可以通过JS或者body元素中的onresize特性来指定处理程序。</span></span></span></span></span>　　</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">body </span><span style="color: #ff0000;">onresize</span><span style="color: #0000ff;">="alert('changed')"</span><span style="color: #0000ff;">&gt;</span></pre>
+</div>
+<p>　　 &nbsp;写了这句代码，那么浏览器的大小发生改变时就会弹出窗口。</p>
+<p>&nbsp;</p>
+<p><strong>4.scroll事件</strong></p>
+<p><strong>　　这个事件会在文档被滚动期间重复被触发，所以应当尽量保持事件处理程序的代码简单。</strong></p>
+<p>&nbsp;</p>
+<p><strong>&nbsp;</strong></p>
+<h2>第二部分：焦点事件</h2>
+<p>　　焦点事件会在页面元素获得或失去焦点时触发。主要有下面几种：</p>
+<ul>
+<li>blur &nbsp; 在元素失去焦点时触发。这个<strong>事件不冒泡</strong>，所有浏览器都支持。</li>
+<li>focus &nbsp; 在元素获得焦点时触发。这个<strong>事件不冒泡</strong>，所有浏览器都支持。</li>
+<li>focusin &nbsp;在元素获得焦点时触发。这个<strong>事件冒泡,</strong>某些浏览器不支持。</li>
+<li>focusout 在元素失去焦点时触发。这个<strong>事件冒泡</strong>，某些浏览器不支持。</li>
+</ul>
+<p>　　注意：即使blur和focus不冒泡，也可以在捕获阶段侦听到他们。</p>
+<p>&nbsp;</p>
+<h2>第三部分：鼠标与滚轮事件</h2>
+<p>　　鼠标事件是Web开发中最常用的一类事件，因为鼠标是最主要的定位设备。</p>
+<ul>
+<li>click---用户单击鼠标左键<strong>或按下回车键</strong>触发</li>
+<li>dbclick---用户双击鼠标左键触发。</li>
+<li>mousedown---在用户<strong>按下了任意鼠标按钮</strong>时触发。</li>
+<li>mouseenter---在鼠标<strong>光标从元素外部首次移动到元素范围内</strong>时触发。此事件<strong>不冒泡</strong>。</li>
+<li>mouseleave---元素上方的<strong>光标移动到元素范围之外</strong>时触发。<strong>不冒泡</strong>。</li>
+<li>mousemove---<strong>光标在元素的内部不断的移动</strong>时触发。</li>
+<li>mouseover---鼠标指针位于一个元素外部，然后用户将首次移动到另一个元素边界之内时触发。</li>
+<li>mouseout---用户将光标从一个元素上方移动到另一个元素时触发。 &nbsp;&nbsp;</li>
+<li>mouseup---在用户<strong>释放鼠标按钮时</strong>触发。</li>
+</ul>
+<p>　　<strong>注意到：上述所有事件除了mouseenter和mouseleave外都冒泡。</strong></p>
+<p><strong>　　重要：只有在<span style="color: #ff6600;">同一个元素上相继触发mousedown和mouseup事件，</span>才会触发click事件。同样，只有在同一个元素上触发两次click事件，才会触发dbclick事件。</strong></p>
+<p><strong>　　</strong>dbclick事件的产生过程如下：</p>
+<ol>
+<li>mousedown</li>
+<li>mouseup</li>
+<li>click</li>
+<li>mousedown</li>
+<li>mouseup</li>
+<li>click</li>
+<li>dbclick</li>
+</ol>
+<p>　　上面介绍了有关鼠标的事件，下面介绍一些对于鼠标光标的位置：客户区坐标位置、页面坐标位置、屏幕坐标位置</p>
+<p><strong>一、客户区坐标位置</strong></p>
+<p><span style="color: #ff6600;"><strong>　　通过客户区坐标可以知道鼠标是在<span style="background-color: #888888; color: #ffffff;">视口</span>中什么位置发生的。</strong></span></p>
+<p>　　clientX和clientY分别表示鼠标点击的位置。以body的左上角为原点，向右为X的正方向，向下为Y的正方向。这两个都是event的属性。举例如下：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">button </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="clickMe"</span><span style="color: #0000ff;">&gt;</span>点我<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">button</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span>
+        <span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> button</span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;">document.getElementById(</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">clickMe</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">);
+        button.onclick</span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #0000ff;">function</span><span style="background-color: #f5f5f5; color: #000000;">(event){
+            alert(event.clientY</span><span style="background-color: #f5f5f5; color: #000000;">+</span><span style="background-color: #f5f5f5; color: #000000;">""</span><span style="background-color: #f5f5f5; color: #000000;">+</span><span style="background-color: #f5f5f5; color: #000000;">event.clientX);
+        };
+    </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>　　当我点击按钮的左上角时，显示为00。效果如下：</p>
+<p><img src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/1044137-20161207181206366-367304074.png" alt="" width="812" height="110"></p>
+<p>&nbsp;</p>
+<p><strong>二.页面坐标位置</strong></p>
+<p><strong>　　和客户区坐标位置不同，页面坐标位置表示鼠标光标在页面而非视口中的位置。因此坐标是从<span style="background-color: #888888; color: #ffffff;">页面本身</span>而非视口的左边和顶边计算的。如果前面的话不能很好的理解，接着看这里：<span style="color: #ffffff; background-color: #888888;">在页面没有滚动的情况下，页面坐标位置和客户区坐标位置是相同的。</span></strong></p>
+<p><span style="color: #000000; background-color: #ffffff;">　　</span><span style="color: #ffffff; background-color: #888888;"><span style="color: #000000; background-color: #ffffff;">页面坐标</span></span><span style="color: #ffffff; background-color: #888888;"><br></span></p>
+<p>&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang=<span style="color: #800000;">"</span><span style="color: #800000;">en</span><span style="color: #800000;">"</span>&gt;
+&lt;head&gt;
+    &lt;meta charset=<span style="color: #800000;">"</span><span style="color: #800000;">UTF-8</span><span style="color: #800000;">"</span>&gt;
+    &lt;title&gt;页面坐标位置&lt;/title&gt;
+    &lt;style&gt;
+        *<span style="color: #000000;">{
+            margin:</span><span style="color: #800080;">0</span><span style="color: #000000;">;
+            padding:</span><span style="color: #800080;">0</span><span style="color: #000000;">;
+        }
+        div{
+            width: 800px;
+            height: 1200px;
+            </span><span style="color: #008000;">/*</span><span style="color: #008000;">我的电脑的视口高度为960px；</span><span style="color: #008000;">*/</span><span style="color: #000000;">
+            background: #ccc;
+        }
+    </span>&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div&gt;&lt;/div&gt;
+    &lt;button id=<span style="color: #800000;">"</span><span style="color: #800000;">button</span><span style="color: #800000;">"</span>&gt; 点击我&lt;/button&gt;
+    &lt;script&gt;
+        <span style="color: #0000ff;">var</span> button=document.getElementById(<span style="color: #800000;">"</span><span style="color: #800000;">button</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+        button.onclick</span>=<span style="color: #000000;">function(){
+            alert(</span><span style="color: #800000;">"</span><span style="color: #800000;">pageX为</span><span style="color: #800000;">"</span>+<span style="color: #0000ff;">event</span>.pageX+<span style="color: #800000;">"</span><span style="color: #800000;">pageY为</span><span style="color: #800000;">"</span>+<span style="color: #0000ff;">event</span><span style="color: #000000;">.pageY);
+        };
+    </span>&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>在上面的例子中，我把div的高设置为了1200px；而我的浏览器视口高度为960px；所以一定需要滚动我们才能点击按钮，最终得到的结果是：pageX为13pageY为1210。</p>
+<p>&nbsp;</p>
+<p>然而IE8及更早的浏览器是不支持事件对象上的页面坐标的，即不能通过pageX和pageY来获得页面坐标，这时<strong>需要使用客户区坐标和滚动信息来计算了。而滚动信息需要使用document.body(混杂模式)、document.documentElement(标准模式)中的scrollLeft和scrollTop属性。举例如下：</strong></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>    &lt;button id=<span style="color: #800000;">"</span><span style="color: #800000;">button</span><span style="color: #800000;">"</span>&gt; 点击我&lt;/button&gt;
+    &lt;script&gt;
+        <span style="color: #0000ff;">var</span> button=document.getElementById(<span style="color: #800000;">"</span><span style="color: #800000;">button</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+        button.onclick</span>=<span style="color: #000000;">function(){
+            </span><span style="color: #0000ff;">var</span> pageX=<span style="color: #0000ff;">event</span>.clientX+(document.body.scrollLeft||<span style="color: #000000;">document.documentElement.scrollLeft);
+            </span><span style="color: #0000ff;">var</span> pageY=<span style="color: #0000ff;">event</span>.clientY+(document.body.scrollRight||<span style="color: #000000;">document.documentElement.scrollRight);
+            alert(</span><span style="color: #800000;">"</span><span style="color: #800000;">pageX为</span><span style="color: #800000;">"</span>+pageX+<span style="color: #800000;">"</span><span style="color: #800000;">pageY为</span><span style="color: #800000;">"</span>+<span style="color: #000000;">pageY);
+        };
+    </span>&lt;/script&gt;</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>此例子在IE浏览器下可得到同样结果。</p>
+<p>&nbsp;</p>
+<p><strong>三.屏幕坐标位置</strong></p>
+<p>&nbsp;</p>
+<p><strong>　　</strong>与前两者又有所不同，鼠标事件发生时，还有一个光标相对于整个电脑屏幕的位置。通过screenX和screenY属性就可以确定鼠标事件发生时鼠标指针相对于整个屏幕的位置。举例如下：</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang=<span style="color: #800000;">"</span><span style="color: #800000;">en</span><span style="color: #800000;">"</span>&gt;
+&lt;head&gt;
+    &lt;meta charset=<span style="color: #800000;">"</span><span style="color: #800000;">UTF-8</span><span style="color: #800000;">"</span>&gt;
+    &lt;title&gt;页面坐标位置&lt;/title&gt;
+    &lt;style&gt;
+        *<span style="color: #000000;">{
+            margin:</span><span style="color: #800080;">0</span><span style="color: #000000;">;
+            padding:</span><span style="color: #800080;">0</span><span style="color: #000000;">;
+        }
+
+    </span>&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;button id=<span style="color: #800000;">"</span><span style="color: #800000;">button</span><span style="color: #800000;">"</span>&gt; 点击我&lt;/button&gt;
+    &lt;script&gt;
+        <span style="color: #0000ff;">var</span> button=document.getElementById(<span style="color: #800000;">"</span><span style="color: #800000;">button</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+        button.onclick</span>=<span style="color: #000000;">function(){
+            alert(</span><span style="color: #800000;">"</span><span style="color: #800000;">X为：</span><span style="color: #800000;">"</span>+<span style="color: #0000ff;">event</span>.screenX+<span style="color: #800000;">"</span><span style="color: #800000;">Y为：</span><span style="color: #800000;">"</span>+<span style="color: #0000ff;">event</span><span style="color: #000000;">.screenY);
+        };
+    </span>&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>最终的结果如下：</p>
+<p><img src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/1044137-20161207221833194-548101711.png" alt="" width="754" height="257"></p>
+<p>显然screenX和screenY是相对于屏幕的左方和上方的。</p>
+<p>&nbsp;</p>
+<p>四.修改键</p>
+<p>　　当点击某个元素时，如果我们同时按下了ctrl键，那么事件对象的ctrlKey属性值将为true，否则为false，对于alt、shift、meta（windows键盘的windows键、苹果机的Cmd键）的事件属性altKey、shiftKey、metaKey同样如此。下面举例如下：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>    &lt;button id=<span style="color: #800000;">"</span><span style="color: #800000;">button</span><span style="color: #800000;">"</span>&gt; 点击我&lt;/button&gt;
+    &lt;script&gt;
+        <span style="color: #0000ff;">var</span> button=document.getElementById(<span style="color: #800000;">"</span><span style="color: #800000;">button</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+        button.onclick</span>=<span style="color: #000000;">function(){
+            </span><span style="color: #0000ff;">var</span> array=<span style="color: #0000ff;">new</span><span style="color: #000000;"> Array();
+            </span><span style="color: #0000ff;">if</span>(<span style="color: #0000ff;">event</span><span style="color: #000000;">.shiftKey){
+                array.push(</span><span style="color: #800000;">"</span><span style="color: #800000;">shift</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+            }
+            </span><span style="color: #0000ff;">if</span>(<span style="color: #0000ff;">event</span><span style="color: #000000;">.ctrlKey){
+                array.push(</span><span style="color: #800000;">"</span><span style="color: #800000;">ctrl</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+            }
+            </span><span style="color: #0000ff;">if</span>(<span style="color: #0000ff;">event</span><span style="color: #000000;">.altKey){
+                array.push(</span><span style="color: #800000;">"</span><span style="color: #800000;">alt</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+            }
+            </span><span style="color: #0000ff;">if</span>(<span style="color: #0000ff;">event</span><span style="color: #000000;">.metaKey){
+                array.push(</span><span style="color: #800000;">"</span><span style="color: #800000;">meta</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+            }
+            alert(array.join(</span><span style="color: #800000;">"</span><span style="color: #800000;">,</span><span style="color: #800000;">"</span><span style="color: #000000;">));
+        };
+    </span>&lt;/script&gt;</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>这个例子中，我首先创建了一个array数组，接着如果我按下了那几个键，就会存入相应的名称。这里我同时按下了四个键，结果如下：</p>
+<p><img src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/1044137-20161207222941272-59756586.png" alt=""></p>
+<p>即最终将数组中的四个值拼接成了字符串显示出来。</p>
+<p>&nbsp;</p>
+<p>五、相关元素</p>
+<p>&nbsp;</p>
+<p>　　</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>    &lt;button id=<span style="color: #800000;">"</span><span style="color: #800000;">button</span><span style="color: #800000;">"</span>&gt; 点击我&lt;/button&gt;
+    &lt;script&gt;
+        <span style="color: #0000ff;">var</span> button=document.getElementById(<span style="color: #800000;">"</span><span style="color: #800000;">button</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+        button.onmouseup</span>=<span style="color: #000000;">function(){
+            alert(</span><span style="color: #0000ff;">event</span><span style="color: #000000;">.button);
+        };
+    </span>&lt;/script&gt;</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>　　当我是用左键产生mousedown事件时，弹出窗口为0，中间键为1，右键为2。</p>
+<p>&nbsp;</p>
+<h2>七、鼠标滚轮事件</h2>
+<p>　　</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="cnblogs_code">
+<pre>    &lt;script&gt;<span style="color: #000000;">
+        document.onmousewheel</span>=<span style="color: #000000;">function(){
+            alert(</span><span style="color: #0000ff;">event</span><span style="color: #000000;">.wheelDelta);
+        };
+    </span>&lt;/script&gt;</pre>
+</div>
+<p>&nbsp;</p>
+<p>当我向下滚动滚轮时，效果如下：</p>
+<p><img src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/1044137-20161207225208007-212188713.png" alt="" width="962" height="104"></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>第四部分：键盘和文本事件</h2>
+<p>　　该部分主要有下面几种事件：</p>
+<ol>
+<li>keydown：当用户按下键盘上的<strong>任意键</strong>时触发。按住不放，会重复触发。</li>
+<li>keypress:当用户按下键盘上的字符键时触发。按住不放，会重复触发。</li>
+<li>keyup:当用户释放键盘上的键时触发。</li>
+<li>textInput:这是唯一的文本事件，用意是将文本显示给用户之前更容易拦截文本。</li>
+</ol>
+<p>　　<strong>这几个事件在用户通过文本框输入文本时才最常用到。</strong></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>　　键盘事件：</strong></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>    document.addEventListener(<span style="color: #800000;">"</span><span style="color: #800000;">keydown</span><span style="color: #800000;">"</span>,handleKeyDownClick,<span style="color: #0000ff;">false</span><span style="color: #000000;">);
+
+        function handleKeyDownClick(</span><span style="color: #0000ff;">event</span><span style="color: #000000;">) {
+            </span><span style="color: #0000ff;">var</span> e = <span style="color: #0000ff;">event</span>||window.<span style="color: #0000ff;">event</span>||arguments.callee.caller.arguments[<span style="color: #800080;">0</span><span style="color: #000000;">];
+            </span><span style="color: #0000ff;">if</span> (e&amp;&amp;e.keyCode == <span style="color: #800080;">13</span><span style="color: #000000;">) {
+                alert(</span><span style="color: #800000;">"</span><span style="color: #800000;">keydown</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+            }
+        }    </span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><strong>　　</strong></p>
+<p><strong>　　</strong></p>
+<p>&nbsp;</p>
+</div>
+<div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block"><div id="BlogPostCategory">
+    分类: 
+            <a href="https://www.cnblogs.com/zhuzhenwei918/category/896820.html" target="_blank">JavaScript</a></div>
+
+
+    <div id="blog_post_info">
+<div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(6142228,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+        <a id="green_channel_follow" onclick="follow(&#39;2981eafc-1a94-e611-845c-ac853d9f53ac&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/zhuzhenwei918/" target="_blank"><img src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/20161018223617.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/zhuzhenwei918/">Wayne-Zhu</a><br>
+            <a href="https://home.cnblogs.com/u/zhuzhenwei918/followees/">关注 - 42</a><br>
+            <a href="https://home.cnblogs.com/u/zhuzhenwei918/followers/">粉丝 - 304</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;2981eafc-1a94-e611-845c-ac853d9f53ac&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(6142228,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(6142228,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+    <div class="clear"></div>
+    <div id="post_next_prev">
+
+    <a href="https://www.cnblogs.com/zhuzhenwei918/p/6142144.html" class="p_n_p_prefix">« </a> 上一篇：    <a href="https://www.cnblogs.com/zhuzhenwei918/p/6142144.html" title="发布于 2016-12-07 17:49">十分钟入门less(翻译自：Learn lESS in 10 Minutes(or less))</a>
+    <br>
+    <a href="https://www.cnblogs.com/zhuzhenwei918/p/6142721.html" class="p_n_p_prefix">» </a> 下一篇：    <a href="https://www.cnblogs.com/zhuzhenwei918/p/6142721.html" title="发布于 2016-12-07 20:43">前端模板引擎</a>
+
+</div>
+</div>
+            </div>
+            <div class="postDesc">posted @ 
+<span id="post-date">2016-12-07 18:13</span>&nbsp;<a href="https://www.cnblogs.com/zhuzhenwei918/">Wayne-Zhu</a> 阅读(<span id="post_view_count">4301</span>) 评论(<span id="post_comment_count">0</span>) <a href="https://i.cnblogs.com/EditPosts.aspx?postid=6142228" rel="nofollow"> 编辑</a> <a href="javascript:void(0)" onclick="AddToWz(6142228); return false;">收藏</a>
+</div>
+        </div>
+	    
+	    
+    </div><!--end: topics 文章、评论容器-->
+</div>
+<script src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/highlight.min.js.下载"></script>
+<script>markdown_highlight();</script>
+<script>
+    var allowComments = true, cb_blogId = 311524, cb_blogApp = 'zhuzhenwei918', cb_blogUserGuid = '2981eafc-1a94-e611-845c-ac853d9f53ac';
+    var cb_entryId = 6142228, cb_entryCreatedDate = '2016-12-07 18:13', cb_postType = 1; 
+    loadViewCount(cb_entryId);
+</script><a name="!comments"></a>
+<div id="blog-comments-placeholder"></div>
+<script>
+    var commentManager = new blogCommentManager();
+    commentManager.renderComments(0);
+</script>
+
+<div id="comment_form" class="commentform">
+    <a name="commentform"></a>
+    <div id="divCommentShow"></div>
+    <div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/zhuzhenwei918/p/6142228.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/zhuzhenwei918/p/6142228.html#top">返回顶部</a></div>
+    <div id="comment_form_container"><div class="login_tips">
+    注册用户登录后才能发表评论，请 
+    <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a>
+     或 
+    <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，
+    <a href="https://www.cnblogs.com/">访问</a> 网站首页。
+</div></div>
+    <div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+    <div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-工控&#39;)">【推荐】超50万C++/C#源码: 大型实时仿真组态图形源码</a><br><a href="http://click.aliyun.com/m/1000074461/" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-阿里云&#39;)">【活动】阿里云910会员节多款云产品满减活动火热进行中</a><br><a href="https://www.ctyun.cn/activity/#/enterprise2?hmsr=%E5%8D%9A%E5%AE%A2%E5%9B%AD-0901-0%E5%85%83%E4%B8%8A%E4%BA%91&amp;hmpl=&amp;hmcu=&amp;hmkw=&amp;hmci=" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-天翼云&#39;)">【推荐】新手上天翼云，数十款云产品、新一代主机0元体验</a><br><a href="http://clickc.admaster.com.cn/c/a131574,b3595115,c1705,i0,m101,8a1,8b3,h" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-华为云微认证&#39;)">【推荐】零基础轻松玩转华为云产品，获壕礼加返百元大礼</a><br><a href="http://clickc.admaster.com.cn/c/a131575,b3595121,c1705,i0,m101,8a1,8b3,h" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-华为文字&#39;)">【推荐】华为云文字识别资源包重磅上市，1元万次限时抢购</a><br></div>
+    <div id="opt_under_post"></div>
+    <script async="async" src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/gpt.js.下载"></script>
+    <script>
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+    </script>
+    <script>
+        googletag.cmd.push(function () {
+            googletag.defineSlot("/1090369/C1", [300, 250], "div-gpt-ad-1546353474406-0").addService(googletag.pubads());
+            googletag.defineSlot("/1090369/C2", [468, 60], "div-gpt-ad-1539008685004-0").addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    </script>
+    <div id="cnblogs_c1" class="c_ad_block">
+        <div id="div-gpt-ad-1546353474406-0" style="height:250px; width:300px;" data-google-query-id="CKeQtuX6uuQCFQZ6vQodq_MPpg"><div id="google_ads_iframe_/1090369/C1_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/1090369/C1_0" title="3rd party ad content" name="google_ads_iframe_/1090369/C1_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" data-google-container-id="1" data-load-complete="true" src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/saved_resource.html"></iframe></div></div>
+    </div>
+    <div id="under_post_news"><div class="recomm-block"><b>相关博文：</b><br>·  <a title="JS事件类型" href="https://www.cnblogs.com/smileke/p/9944043.html" target="_blank" onclick="clickRecomItmem(9944043)">JS事件类型</a><br>·  <a title="事件类型" href="https://www.cnblogs.com/luoyanan/p/5471080.html" target="_blank" onclick="clickRecomItmem(5471080)">事件类型</a><br>·  <a title="jQuery中的事件绑定" href="https://www.cnblogs.com/whymoney1000/p/10786422.html" target="_blank" onclick="clickRecomItmem(10786422)">jQuery中的事件绑定</a><br>·  <a title="js事件类型" href="https://www.cnblogs.com/1738321847xubo/p/9954038.html" target="_blank" onclick="clickRecomItmem(9954038)">js事件类型</a><br>·  <a title="js事件类型" href="https://www.cnblogs.com/wcphahaha/p/9947010.html" target="_blank" onclick="clickRecomItmem(9947010)">js事件类型</a><br></div></div>
+    <div id="cnblogs_c2" class="c_ad_block">
+        <div id="div-gpt-ad-1539008685004-0" style="height:60px; width:468px;" data-google-query-id="CMe-tOX6uuQCFQZ6vQodq_MPpg">
+            
+        <div id="google_ads_iframe_/1090369/C2_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/1090369/C2_0" title="3rd party ad content" name="google_ads_iframe_/1090369/C2_0" width="468" height="60" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" data-google-container-id="2" data-load-complete="true" src="./JavaScript事件类型 - Wayne-Zhu - 博客园_files/saved_resource(1).html"></iframe></div></div>
+    </div>
+    <div id="under_post_kb">
+<div class="itnews c_ad_block">
+    <b>最新 IT 新闻</b>:
+    <br>
+ ·              <a href="https://news.cnblogs.com/n/632656/" target="_blank">Facebook宣布在美国推出网络约会服务 股价涨2%</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/632655/" target="_blank">迄今最小加速传感器问世 有望用于手机导航和疾病监测系统</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/632654/" target="_blank">英特尔发布世界上最快的超级学术计算机Frontera</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/632653/" target="_blank">三代锐龙加速频率不足 AMD官方：马上补血！</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/632652/" target="_blank">黑洞吸积物理图像“最后一块拼图”完成</a>
+            <br>
+    » <a href="https://news.cnblogs.com/" title="IT 新闻" target="_blank">更多新闻...</a>
+</div></div>
+    <div id="HistoryToday" class="c_ad_block"></div>
+    <script type="text/javascript">
+        fixPostBody();
+        setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+        deliverAdT2();
+        deliverAdC1();
+        deliverAdC2();
+        loadNewsAndKb();
+        loadBlogSignature();
+LoadPostCategoriesTags(cb_blogId, cb_entryId);        LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+        GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+        loadOptUnderPost();
+        GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    </script>
+</div>
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+
+
+			<div id="blog-calendar" style="display:none"></div><script>loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn">
+
+<!-- 搜索 -->
+<div id="sidebar_search" class="sidebar-block">
+    <div id="sidebar_search" class="mySearch">
+        <h3 class="catListTitle">搜索</h3>
+        <div id="sidebar_search_box">
+            <div id="widget_my_zzk" class="div_my_zzk">
+                <input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk">
+            </div>
+            <div id="widget_my_google" class="div_my_zzk">
+                <input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 常用链接 -->
+
+
+<!-- 最新随笔 -->
+
+
+
+<!-- 我的标签 -->
+<div id="sidebar_toptags" class="sidebar-block">
+    
+</div>
+
+<!-- 积分与排名 -->
+<div id="sidebar_scorerank" class="sidebar-block">
+    <div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	
+461513
+	</li>
+	<li class="liRank">
+		排名 -	
+472
+	</li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+<!-- 随笔分类、随笔档案、文章分类、新闻分类、相册、链接 -->
+<div id="sidebar_categories">
+    
+        <div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+            <h3 class="catListTitle">
+                
+
+随笔分类
+
+
+
+            </h3>
+
+
+            <ul>
+
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/915670.html" rel="">
+    Ajax(3)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/1034379.html" rel="">
+    Angular(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/928967.html" rel="">
+    Bootstrap(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/1066684.html" rel="">
+    C/C++(30)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/990545.html" rel="">
+    cars(2)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/918795.html" rel="">
+    chrome(7)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/1009476.html" rel="">
+    computer problems &amp;&amp; solutions(5)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/899004.html" rel="">
+    CSS3(11)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/993105.html" rel="">
+    DOS(3)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/1032922.html" rel="">
+    Electron(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/918655.html" rel="">
+    ES6(7)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/1032931.html" rel="">
+    flow.js / typescript(2)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/1208919.html" rel="">
+    fortran(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/951939.html" rel="">
+    git&amp;&amp;svn(6)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/907853.html" rel="">
+    HTML&amp;CSS(48)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/899005.html" rel="">
+    HTML5(14)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/1200015.html" rel="">
+    java(7)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/896820.html" rel="">
+    JavaScript(83)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/902405.html" rel="">
+    jQuery(5)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/899006.html" rel="">
+    JSON&amp;&amp;XML(4)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/1202887.html" rel="">
+    Machine Learning(3)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/1116914.html" rel="">
+    mgp(8)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/953565.html" rel="">
+    node(22)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/905536.html" rel="">
+    photoshop与切图(3)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/915109.html" rel="">
+    PHP(2)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/1182604.html" rel="">
+    python(4)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/939869.html" rel="">
+    React(22)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/925539.html" rel="">
+    Regular Expression(4)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/919426.html" rel="">
+    sass/less(4)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/938372.html" rel="">
+    vue(38)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/1062405.html" rel="">
+    web安全(2)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/998212.html" rel="">
+    wechat(4)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/912921.html" rel="">
+    产品(10)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/913017.html" rel="">
+    常用软件和插件(10)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/908151.html" rel="">
+    关于前端(19)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/902747.html" rel="">
+    计算机(12)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/970716.html" rel="">
+    计算机专业基础(24)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/963411.html" rel="">
+    可视化(11)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/1003115.html" rel="">
+    前端工程化(11)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/920490.html" rel="">
+    前端性能优化/效率(17)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/1000011.html" rel="">
+    前后端分离(3)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/905249.html" rel="">
+    实例(4)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/985522.html" rel="">
+    数据库(8)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/911833.html" rel="">
+    网站记录(4)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/914750.html" rel="">
+    问题记录(16)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/911761.html" rel="">
+    移动端(11)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/951351.html" rel="">
+    用户体验(8)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/923723.html" rel="">
+    杂文(46)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/category/950825.html" rel="">
+    转载文章(12)
+</a>
+ 
+
+                        </li>
+
+            </ul>
+
+
+        </div>
+        <div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+            <h3 class="catListTitle">
+                
+
+随笔档案
+
+
+
+            </h3>
+
+
+            <ul>
+
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/archive/2019/01.html" rel="">
+    2019年1月(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/archive/2018/12.html" rel="">
+    2018年12月(3)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/archive/2018/11.html" rel="">
+    2018年11月(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/archive/2018/10.html" rel="">
+    2018年10月(2)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/archive/2018/07.html" rel="">
+    2018年7月(3)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/archive/2018/06.html" rel="">
+    2018年6月(6)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/archive/2018/05.html" rel="">
+    2018年5月(13)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/archive/2018/04.html" rel="">
+    2018年4月(25)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/archive/2018/03.html" rel="">
+    2018年3月(19)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/archive/2017/12.html" rel="">
+    2017年12月(5)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/archive/2017/11.html" rel="">
+    2017年11月(14)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/archive/2017/10.html" rel="">
+    2017年10月(11)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/archive/2017/09.html" rel="">
+    2017年9月(16)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/archive/2017/08.html" rel="">
+    2017年8月(35)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/archive/2017/07.html" rel="">
+    2017年7月(38)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/archive/2017/06.html" rel="">
+    2017年6月(32)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/archive/2017/05.html" rel="">
+    2017年5月(76)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/archive/2017/04.html" rel="">
+    2017年4月(35)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/archive/2017/03.html" rel="">
+    2017年3月(32)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/archive/2017/02.html" rel="">
+    2017年2月(48)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/archive/2017/01.html" rel="">
+    2017年1月(15)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/archive/2016/12.html" rel="">
+    2016年12月(43)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/archive/2016/11.html" rel="">
+    2016年11月(37)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/archive/2016/10.html" rel="">
+    2016年10月(14)
+</a>
+ 
+
+                        </li>
+
+            </ul>
+
+
+        </div>
+        <div id="sidebar_imagecategory" class="catListImageCategory sidebar-block">
+            <h3 class="catListTitle">
+                
+
+相册
+
+
+
+            </h3>
+
+
+            <ul>
+
+                        <li>
+                            
+<a href="https://www.cnblogs.com/zhuzhenwei918/gallery/1010047.html" rel="nofollow">
+    photos(1)
+</a>
+ 
+
+                        </li>
+
+            </ul>
+
+
+        </div>
+
+</div>
+
+<!-- 最新评论 -->
+<div id="sidebar_recentcomments" class="sidebar-block">
+    <div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div class="RecentCommentBlock">
+        <ul>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/zhuzhenwei918/p/6416880.html#4300445">1. Re:原生js实现轮播图</a></li>
+                    <li class="recent_comment_body">@ 少年郎-权你说的没错，我也遇到了这个问题，wrap.style.left确实只能读写内联样式，但其实楼主是给了container一个内联的left:-600px的样式的。你可以楼主给的github...</li>
+                    <li class="recent_comment_author">--joelhaha</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/zhuzhenwei918/p/7465467.html#4288060">2. Re:TCP为什么是三次握手，为什么不是两次或者四次 &amp;&amp; TCP四次挥手</a></li>
+                    <li class="recent_comment_body">为什么不是 2次？？ 问的太笼统   具体少了哪次？？  你不知道少了哪次就分析出答案来了？？</li>
+                    <li class="recent_comment_author">--ssif</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/zhuzhenwei918/p/9057289.html#4282038">3. Re:vscode下调试运行c++</a></li>
+                    <li class="recent_comment_body">task.json这个文件有些古老了，现在vscode都是允许定义多个task</li>
+                    <li class="recent_comment_author">--weiyinfu</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/zhuzhenwei918/p/6866094.html#4279223">4. Re:为什么vue+webpack需要用到node，如何部署项目到服务器？</a></li>
+                    <li class="recent_comment_body">开启支.htaccess文件支持<br>这个.htaccess是在哪儿设置的呀？</li>
+                    <li class="recent_comment_author">--ykCoder</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/zhuzhenwei918/p/6866094.html#4279222">5. Re:为什么vue+webpack需要用到node，如何部署项目到服务器？</a></li>
+                    <li class="recent_comment_body">开启支.htaccess文件支持</li>
+                    <li class="recent_comment_author">--ykCoder</li>
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+
+
+<!-- 阅读排行榜 -->
+<div id="sidebar_topviewedposts" class="sidebar-block">
+    <div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock">
+        <ul style="word-break:break-all">
+                    <li>
+                        <a href="https://www.cnblogs.com/zhuzhenwei918/p/6416880.html">
+                            1. 原生js实现轮播图(77617)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/zhuzhenwei918/p/6198821.html">
+                            2. 正则表达式之数字验证(63190)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/zhuzhenwei918/p/7582620.html">
+                            3. 状态码301和302的区别(57850)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/zhuzhenwei918/p/9057289.html">
+                            4. vscode下调试运行c++(53021)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/zhuzhenwei918/p/6892066.html">
+                            5. 如何去除vue项目中的 # --- History模式(49034)
+                        </a>
+                    </li>
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+<!-- 评论排行榜 -->
+<div id="sidebar_topcommentedposts" class="sidebar-block">
+    <div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock">
+        <ul style="word-break:break-all">
+                    <li>
+                        <a href="https://www.cnblogs.com/zhuzhenwei918/p/6181760.html">
+                            1. jQuery中的100个技巧（译）(27)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/zhuzhenwei918/p/6416880.html">
+                            2. 原生js实现轮播图(24)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/zhuzhenwei918/p/7732819.html">
+                            3. 总结(20)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/zhuzhenwei918/p/6124263.html">
+                            4. 深入理解css中的margin属性(13)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/zhuzhenwei918/p/6112034.html">
+                            5. 深入理解css中position属性及z-index属性(9)
+                        </a>
+                    </li>
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+<!-- 推荐排行榜 -->
+<div id="sidebar_topdiggedposts" class="sidebar-block">
+    
+<div id="topdigg_posts_wrap">
+    <div class="catListView">
+        <h3 class="catListTitle">推荐排行榜</h3>
+        <div id="TopDiggPostsBlock">
+            <ul style="word-break: break-all">
+                        <li>
+                            <a href="https://www.cnblogs.com/zhuzhenwei918/p/6181760.html">
+                                1. jQuery中的100个技巧（译）(28)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/zhuzhenwei918/p/6416880.html">
+                                2. 原生js实现轮播图(22)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/zhuzhenwei918/p/6112034.html">
+                                3. 深入理解css中position属性及z-index属性(21)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/zhuzhenwei918/p/7732819.html">
+                                4. 总结(20)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/zhuzhenwei918/p/6104065.html">
+                                5. 如何写出优雅的css代码 ？(13)
+                            </a>
+                        </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div></div>
+                    <script>loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		<!--done-->
+Copyright © 2019 Wayne-Zhu
+<br><span id="poweredby">Powered by .NET Core 3.0 Preview 8 on Linux</span>
+
+
+
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+    <div id="page_end_html">
+        <h3 style="padding: 8px; text-indent: 2em">一分耕耘，一分收获。</h3>
+    </div>
+
+
+</body></html>

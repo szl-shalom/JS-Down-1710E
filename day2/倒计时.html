@@ -1,0 +1,25 @@
+<html>
+
+	<script>
+		
+		
+		
+		function tt(time){
+			setInterval(function(){
+				var timer = new Date()
+				var s = time - timer
+				var sec = parseInt(s / 1000 % 60)
+				var min = parseInt(s / 1000 / 60 % 60)
+				var hour = parseInt(s / 1000 / 60 / 60 % 24)
+				console.log(`距离放假还有${hour}小时${min}分钟${sec}秒`)
+			},1000)
+		}
+		
+		
+		tt(new Date(2019,7,31,11,30))
+	</script>
+
+
+
+
+</html>

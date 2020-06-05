@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+	<style>
+		img{
+			width:100px;
+			height:100px;
+			border:1px solid #ccc;
+		}
+		
+		
+	
+	</style>
+</head>
+
+<body>
+	<img src="../day3/img/2.jpg">
+	<a href="http://172.16.10.119:8080/bwie/mhIndex.do?m=index">123123</a>
+	<script>
+		var div = document.querySelector("img"),
+			flag = false,
+			pos = null;
+		
+		div.addEventListener("mousedown",function(e){
+			flag = true // 打开开关
+			pos = {
+				x:e.offsetX,
+				y:e.offsetY,
+			}
+			div.style.position = "absolute"
+			// 取消默认行为
+			e.preventDefault()
+		})
+		
+		document.addEventListener("mousemove",function(e){
+			if(flag){
+				div.style.left = e.pageX - pos.x + "px"
+				div.style.top = e.pageY - pos.y + "px"
+			}
+			
+		})
+		
+		document.addEventListener("mouseup",function(){
+			flag = false
+			
+		})
+		
+		
+		document.querySelector("a").addEventListener("click",function(e){
+			e.preventDefault()
+		})
+	</script>
+</body>
+
+</html>

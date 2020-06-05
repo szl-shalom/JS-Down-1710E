@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+			
+		}
+		
+		span{
+			padding:6px 20px;
+			display:inline-block;
+			border:1px solid #ccc;
+		}
+	
+	
+		div{
+			padding:50px;
+		}
+	</style>
+</head>
+
+<body>
+    <div class="top">
+        <span>大家好</span>
+        <span>5234 </span>
+    </div>
+    <div class="con">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+    </div>
+	
+	<script>
+		var myTop = document.querySelector(".top"),
+			con = document.querySelector(".con");
+		
+		function fun(el,el1){
+			el.addEventListener("click",function(e){
+				var tar = e.target;
+				if(tar.nodeName === "SPAN"){
+					el1.appendChild(tar)  
+					}
+			})
+		}
+		
+	     fun(myTop,con)
+		 fun(con,myTop)
+	
+	</script>
+	
+</body>
+
+</html>

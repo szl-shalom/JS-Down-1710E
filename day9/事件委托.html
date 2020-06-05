@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li class="one">1</li>
+        <li class="one">2</li>
+        <li class="one">3</li>
+		<h1>1232</h1>
+		<h2>1232</h2>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+		
+    </ul>
+	
+	<script>
+	// 常规思想
+		//var lis = [...document.querySelectorAll("li")];
+		//lis.forEach(function(item){
+		//	item.addEventListener("click",function (){
+		///		alert(item.innerHTML)
+		//	})
+		//})
+		
+	   // 事件委托:用一个事件来管理同一类型的所有事件
+	   // 原理：利用事件冒泡原理
+	   var ul = document.querySelector("ul");
+	   
+	   ul.onclick = function(e){
+			// 事件对象
+			//console.log(e)
+			// 获取事件源
+			<!-- console.log(e.target) -->
+			if(e.target.className==="one"){
+				alert(e.target.innerHTML)
+			}
+			
+	   }
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,167 @@
+<html>
+	
+	
+	<style>
+		
+	
+	</style>
+	<body>
+	    <div>您抽中的奖品是：<span class="gift"></span></div>
+		<button>抽奖</button>您还剩<span class="count">3</span>次抽奖机会</br>
+		奖品：<div class="res"></div>
+		
+		<script>
+			var arr = ["韩红","迪丽热巴","马爸爸","王宝强","明明"],
+				btn = document.querySelector("button"),
+				gift = document.querySelector(".gift"),
+				count = document.querySelector(".count"),
+				res = document.querySelector(".res");
+		    // 封装随机数
+			function random(n,m){
+				return Math.floor(Math.random() * (m - n +1) +n);
+			}
+				
+			btn.onclick = function(){
+				// 是否有抽奖次数
+				if(count.innerHTML<=0){
+					alert("您的抽奖次数已经用完了，请充值！！！！")
+					//结束函数执行
+					return ;
+				}
+				var index //
+				var timer = setInterval(function(){
+				    // 随机下标
+				    index = random(0,arr.length - 1)
+					// 修改奖品的内容
+					gift.innerHTML = arr[index]
+				},100)
+				// 3s后清除间歇定时器timer
+				setTimeout(function(){
+					clearInterval(timer) // 清除
+					count.innerHTML-- // 抽奖次数减一
+					var del =  arr.splice(index,1) // 删除数据
+					res.innerHTML += del[0] //发放奖励
+				},3000)
+				
+			}
+			
+			
+			
+			//	BOM  Browser Object Model  浏览器对象模型
+			//  浏览器历史记录  history
+			//console.log(history)
+			//history.length // 当前窗口的历史记录的长度
+			//history.back() //后退
+			//history.forward() // 前进
+			//history.go(1) //前进一页  
+				
+				
+		    //  浏览器地址信息 location
+			// 属性
+			//location.hash  //  获取#号后面的数据 
+			//location.search // 获取?号后面的数据
+			//location.host  // 主机 + 端口号
+			//location.hostname // 主机名称
+			//location.href  // 当前的窗口的路径
+			//location.pathname // 相对路径
+			//location.port //端口号
+			// 方法
+			//location.reload() // 重新加载当前窗口
+			
+			//navigator  // 保存浏览器的基本信息
+			
+			//navigator.userAgent  //用户代理信息
+			
+			// 定时器
+			
+			// 间歇定时器  
+		    // 参数：第一个参数是一个函数 第二个参数是一个数字 表示时间（毫秒）
+			// 功能：每time毫秒 执行一次函数fun
+			// 语法：setInterval(fun,time)
+			
+			
+			// 打字机案例
+			//var  str = "创建明月光，鹅鹅鹅，曲项向天歌，低头思故乡",
+			//	 btn = document.querySelector("button"),
+			//	 div = document.querySelector("div"),
+			//	 sum = 0;
+			// 添加点击
+			//btn.onclick = function(){
+			//	setInterval(function(){
+			//		sum++
+			//		if(sum>str.length){
+			//			sum = 0
+			//		}
+			//		var res = str.substr(0,sum)
+			//		div.innerHTML = res;
+			//	},300)
+			//}
+		    // 清除间歇定时器
+			// 参数：name清除的定时器的名字
+			// 功能：清除间歇定时器
+			//clearInterval(name)
+				
+				
+				
+			// 倒计时按钮
+			//var btn = document.querySelector("button"),
+			//    sum = 10;
+			// 添加点击事件
+			//btn.onclick  = function(){
+		        // 禁用
+			//	btn.disabled = true
+				// 定时器开启
+			//	var timer = setInterval(function(){
+				    // 时间--
+			//		sum--
+					// 修改btn的内容
+			//		btn.innerHTML = `${sum}秒后重新发送`
+					// 判断时间小于0
+			//		if(sum <=0){
+			//		    sum = 10
+			//			btn.innerHTML = "获取微信验证码"
+			//			btn.disabled = false
+			//			clearInterval(timer)
+			//		}
+			//	},500)
+			//}
+			
+			
+			//延时定时器
+			// 语法：setTimeout(fun,time)
+			// 参数：time是数字  毫秒数
+			// 功能：在time毫秒后，执行一次fun函数
+			
+			
+			//var btn = document.querySelector("button");
+			
+			
+			//btn.onclick = function(){
+			
+				//var timer= setTimeout(function(){
+				//	alert("大家好")
+				//},2000)
+				
+			//	clearTimeout(timer)
+			//}
+			/// 清除延时定时器
+			// 参数：name延时的定时器的名字
+			// 功能：清除延时定时器
+			// 语法：clearTimeout(name)
+			
+			
+			
+		</script>
+	
+	
+	</body>
+
+
+
+
+
+
+
+
+
+</html>

@@ -1,0 +1,234 @@
+<html>
+	<head>
+		<style>
+			*{
+				margin:0;
+				padding:0;
+				box-sizing:border-box;
+			}
+			.wrap{
+				width:800px;
+				margin:150px auto;
+				border:1px solid #ccc;
+				padding:20px;
+			}
+			.header{
+				border-bottom:1px solid #ccc;	
+				padding-bottom:10px;
+				height:60px;
+			}
+			.header button{
+				padding:6px 20px;
+			}
+			.header input{
+				float:right;
+				height:40px;
+			}
+			
+			table{
+				width:100%;
+			}
+			
+			table tr{
+				line-Height:40px;
+			}
+			.mask{
+				position:fixed;
+				left:0;
+				top:0;
+				width:100%;
+				height:100%;
+				background:rgba(0,0,0,.3);
+				display:none;
+			}
+			.mask.active{
+				display:block;
+			}
+			.content{
+				position:absolute;
+				left:50%;
+				top:50%;
+				background:white;
+				padding:30px;
+				width:400px;
+				transform:translate(-50%,-50%);
+			}
+			
+			.content input{
+				width:100%;
+				height:35px;
+			}
+			
+			.content h2 span{
+				float:right;
+			}
+		</style>
+	
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="header">
+				<button class="add">新增</button>
+				<input type="text" class="user-search">
+			</div>
+			
+			<table border="1" cellspacing="0">
+				<thead >
+					<tr>	
+						<th>ID</th>
+						<th>姓名</th>
+						<th>微信号</th>
+						<th>单身状态</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					
+					
+				
+				</tbody>
+			
+			</table>
+			
+		</div>
+		
+		
+		<div class="mask">
+			<div class="content">
+				<h2>信息<span class="close">X</span></h2>
+				<p>姓名:<br/>
+					<input type="text">
+				</p>
+				<p>微信号:<br/>
+					<input type="text">
+				</p>
+				<p>单身状态:<br/>
+					<input type="text">
+				</p>
+				<button class="submit">确定</button>
+				<button class="close">取消</button>
+			</div>
+		</div>
+		
+		
+		<script>
+			// 第一步  数据模拟
+			var arr = [{
+				ID:1,
+				name:"郭好好",
+				weChatNode:"ghh",
+				status:"不可挖墙脚"
+			},{
+				ID:2,
+				name:"李新磊",
+				weChatNode:"lxl",
+				status:"可聊"
+			},{
+				ID:3,
+				name:"迪丽热巴",
+				weChatNode:"dlrb",
+				status:"单身"
+			},{
+				ID:4,
+				name:"古力娜扎",
+				weChatNode:"glnz",
+				status:"刚分手"
+			}]
+		 // 第二部 
+		function render(el,data){
+			el.innerHTML = data.map(function(item,index){
+					return `
+						<tr>	
+						<th>${item.ID}</th>
+						<th>${item.name}</th>
+						<th>${item.weChatNode}</th>
+						<th>${item.status}</th>
+						<th><button ind=${index}>删除</button></th>
+					</tr>
+					`
+				
+			}).join("")
+			
+			del()
+		}
+		
+		// 获取必要的节点
+		var tbody = document.querySelector("tbody"),
+			add = document.querySelector(".add"),
+			mask = document.querySelector(".mask"),
+			close = [...document.querySelectorAll(".close")],
+			submit = document.querySelector(".submit"),
+			userSearch = document.querySelector(".user-search");
+		
+		//调用渲染函数
+		render(tbody,arr)
+		
+		// 点击事件
+		
+	    // 新增
+		add.onclick = function (){
+			mask.classList.add("active")
+		}
+		//关闭
+		close.forEach(function (item){
+			item.onclick = function (){
+					mask.classList.remove("active")
+			}	
+	    })
+		// 提交
+		submit.onclick = function (){
+			var  inputs = [...document.querySelectorAll(".mask input")];
+			
+			var obj  = {
+				ID:  !arr.length ? 1:  arr[arr.length - 1].ID +1,
+				name:inputs[0].value,
+				weChatNode:inputs[1].value,
+				status:inputs[2].value
+			}
+			
+			arr.push(obj)
+			
+			render(tbody,arr)
+			
+			mask.classList.remove("active")
+			
+		}
+		//  模糊搜索
+		userSearch.oninput = function (){
+			var userVal = userSearch.value
+			var res = arr.filter(function(item){
+				return item.name.includes(userVal)
+			})
+			
+			render(tbody,res)
+		}
+		
+		// 删除
+		function del(){
+			
+			var  btns = [...document.querySelectorAll("tbody button")];
+			
+			btns.forEach(function (item){
+				item.onclick = function (){
+					var index = +item.getAttribute("ind");
+					
+					arr.splice(index,1)
+					
+					userSearch.oninput()
+					
+				}
+			})
+		}	
+		
+		
+	
+	
+		
+		</script>
+	</body>
+
+
+
+</html>

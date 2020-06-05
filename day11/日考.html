@@ -1,0 +1,35 @@
+<html>
+
+	<body>	
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+		
+		
+		<script>
+			function addEvent(el,type,fn){
+				if(el.addEventListener){
+					el.addEventListener(type,fn)
+				}else if(el.attachEvent){
+					el.attachEvent("on"+type,fn)
+				}else{
+					el["on"+type] = fn
+				}
+			}
+			var ul = document.getElementsByTagName("ul")[0]
+			addEvent(ul,"click",function(e){
+				e = e || window.event;
+				var tar = e.target || e.srcElement;
+				if(tar.nodeName === "LI"){
+					tar.style.background = "red"
+					
+				}
+			})
+		
+		</script>
+	</body>
+
+</html>

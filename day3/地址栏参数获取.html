@@ -1,0 +1,34 @@
+<html>
+	<script>
+		//"?name=张三&&age=13&&sex=男"
+		
+		//第一步：slice(1)  
+		//"name=张三&age=13&sex=男"
+		
+		//第二步 split("&")
+		//["name=张三","age=13","sex=男"]
+		
+		//第三部 forEach => item =>split("=")
+		
+		//{
+		//	name："张三",
+		//	age:13,
+		//	sex:"男",
+		//}
+		
+		
+		function getUrlPars(){
+			var str = location.search,
+				obj = {}
+			str.slice(1).split("&").forEach(function(item){
+				var res = item.split("=")
+				obj[res[0]] = res[1]
+			})
+			return obj
+		}
+	
+	
+	</script>
+
+
+</html>

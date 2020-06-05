@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>内容一<button>删除</button></li>
+        <li>内容一<button>删除</button></li>
+        <li>内容一<button>删除</button></li>
+        <li>内容一<button>删除</button></li>
+        <li>内容一<button>删除</button></li>
+        <li>内容一<button>删除</button></li>
+    </ul>
+    <button>全部删除</button>
+	<script>
+		var  btns = [...document.querySelectorAll("ul li button")];
+		
+		btns.forEach(function(item){
+			item.onclick = function (){
+				// 弑父
+				delEl(item.parentNode)
+				
+			}
+		})
+		
+		function delEl(el){
+			el.remove()
+		}
+	
+	
+	</script>
+</body>
+
+</html>

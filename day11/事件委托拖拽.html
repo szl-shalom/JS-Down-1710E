@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+	
+	<style>
+		img,div{
+			width:200px;
+			height:200px;
+		}
+		
+		div{
+			background:red
+		}
+	</style>
+</head>
+
+<body>
+	<img src="../day3/img/2.jpg">
+	
+	<div></div>
+	
+	<a>123123</a>
+	
+	<script>
+		var flag = false,
+			pos = null,
+			tar;
+	
+		document.addEventListener("mousedown",function(e){
+			flag = true;
+			pos = {
+				x:e.offsetX,
+				y:e.offsetY,	
+			}
+		    tar = e.target;
+			tar.style.position = "absolute";
+			e.preventDefault()
+			
+		})
+		
+		document.addEventListener("mousemove",function(e){
+			if(flag){
+				tar.style.left = e.pageX - pos.x + "px"
+				tar.style.top = e.pageY - pos.y + "px"
+				
+			}
+			
+		})
+		
+		document.addEventListener("mouseup",function(){
+			flag = false;
+			
+		})
+	</script>
+</body>
+
+</html>

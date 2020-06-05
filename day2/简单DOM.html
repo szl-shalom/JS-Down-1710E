@@ -1,0 +1,61 @@
+<html>
+	<head>
+	
+	</head>
+	
+	
+	<body>
+		<div>1
+			<h3>2</h3>
+			3
+			<h1>4</h1>5
+			
+			<h2>6</h2>
+			7
+		</div>
+	</body>	
+
+
+</html>
+
+<script>
+	// 什么是DOM
+	// Docuemnt Object Model  文档对象模型
+	// DOM独立于平台的，是提供对外的一种接口，可以操作我们页面的内容，样式等等..
+	
+	// 获取元素
+	// 通过id名称获取元素  返回页面第一个匹配到的元素 
+	// el标签元素
+	// el.getElementById("id名称") 
+	// 通过标签获取元素  返回一个类数组 数组内容是匹配到的所有的元素
+	// el.getElementsByTagName("标签名称")
+	// 通过类名获取元素  返回一个类数组 数组内容是匹配到的所有的元素
+	// el.getElementsByClassName("类名")
+	
+	// 通过css选择器获取元素
+	// el.querySelector("css名称")  //获取页面第一个匹配到元素
+	// el.querySelectorAll("css名称") // 获取页面的所有指定元素
+		
+		
+	var h1 = document.querySelector("h1");
+		console.log(h1.parentNode.children,h1.parentNode.childNodes)
+	
+	// 节点关系
+	
+	// 下一个兄弟元素节点
+	// el.nextElementSibling
+	// 上一个兄弟元素节点
+	// el.previousElementSibling
+	// 获取父元素
+	// el.parentNode
+	
+	// 上一个节点
+	//el.previousSibling
+	// 下一个节点
+    //el.nextSibling
+	
+	//获取el下的所有子元素节点
+	//el.children
+	//获取el下的所有子节点
+	//el.childNodes
+</script>

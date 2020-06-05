@@ -1,0 +1,118 @@
+<html>
+	
+	
+	
+	<head>
+		<style>	
+			*{
+				margin:0;
+				padding:0;
+			}
+			
+			.wrap{
+				width:1200px;
+				height:800px;
+				margin:100px auto;
+				overflow:hidden;
+			}
+			
+			.wrap .content{
+				width:6000px;
+				heigth:600px;
+				transition:margin-left 1s;
+			}
+			
+			.wrap .content img{
+				width:1200px;
+				height:600px;
+				float:left;
+			}
+			
+			
+			.wrap .page{
+				margin-top:10px;
+			}
+			.wrap .page button{
+				width:50px;
+				height:180px;
+				float:left;
+				margin-left:10px;
+			}
+			
+			.wrap .page img{
+				width:200px;
+				height:180px;
+				float:left;
+				margin-left:10px;
+				
+			}
+		
+		</style>
+	
+	</head>
+	
+	<body>
+		<div class="wrap">
+			<div class="content">
+				<img src="./img/2.jpg">
+				<img src="./img/3.jpg">
+				<img src="./img/4.jpg">
+				<img src="./img/6.jpeg">
+				<img src="./img/7.jpg">
+			</div>
+			
+			<div class="page">
+				<button>上一页</button>
+				<img src="./img/2.jpg">
+				<img src="./img/3.jpg">
+				<img src="./img/4.jpg">
+				<img src="./img/6.jpeg">
+				<img src="./img/7.jpg">
+				<button>下一页</button>
+			</div>
+		</div>
+		<script>
+			var index = 0,
+				imgs = document.querySelectorAll(".content img"),
+				content = document.querySelector(".content"),
+				imgLitter = document.querySelectorAll(".page img"),
+				btns = document.querySelectorAll("button");
+				
+				
+				//开始轮播
+				function startBanner(){
+					setInterval(function (){
+						btns[1].onclick()
+					},2000)
+				}
+				
+				// 小图片点击事件
+				
+				imgLitter.forEach(function (item,index){
+					item.onclick = function(){
+						content.style.marginLeft = -index * 1200 + "px"
+					}
+				})
+				// 左按钮点击事件
+				btns[0].onclick = function(){
+					index--// 显示后一张图片
+					index < 0 ? index = imgs.length - 1:null
+					content.style.marginLeft = -index * 1200 + "px"
+				}
+				// 右按钮点击事件
+				btns[1].onclick = function(){
+					index++ // 显示后一张图片
+					index > imgs.length - 1 ? index = 0:null
+					content.style.marginLeft = -index * 1200 + "px"
+				}
+				
+				startBanner()
+				
+				
+		
+		</script>
+	</body>
+
+
+
+</html>

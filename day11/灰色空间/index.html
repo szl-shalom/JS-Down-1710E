@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 800px;
+            height: 470px;
+            margin: 0 auto;
+            background: url('img/b1.jpg');
+            position: relative;
+        }
+
+        .btn {
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+            background: #fff;
+            position: absolute;
+            left: 50%;
+            border-radius: 50%;
+            cursor: move;
+        }
+
+        .cover {
+            width: 100%;
+            height: 30px;
+            background: url('img/b2.jpg');
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div class="btn">👆👇</div>
+        <div class="cover"></div>
+    </div>
+    <script>
+      var box = document.querySelector("#box"),
+		  btn = document.querySelector(".btn"),
+		  cover = document.querySelector(".cover"),
+		  flag = false;
+		  pos = null;
+		  
+		  btn.addEventListener("mousedown",function(e){
+			  pos = {
+				  x:e.offsetX,
+				  y:e.offsetY,
+			  }
+			  
+			  flag = true;
+			  
+		  })
+		  
+		   document.addEventListener("mousemove",function(e){
+			  if(flag){
+				 var x =  e.pageX - pos.x - box.offsetLeft,
+				     y =  e.pageY - pos.y - box.offsetTop;
+					 
+					 if(x < 0) x = 0
+					 if(y < 0) y = 0
+					 
+					 if(x > box.offsetWidth - btn.offsetWidth)  x = box.offsetWidth - btn.offsetWidth
+					 if(y > box.offsetHeight - btn.offsetHeight) y = box.offsetHeight - btn.offsetHeight
+						
+					btn.style.left = x + "px"
+					btn.style.top = y + "px"
+					
+					cover.style.height = y + btn.offsetHeight / 2 +"px"
+				  
+			  }
+			  
+		  })
+		  
+		   document.addEventListener("mouseup",function(){
+			  flag = false;
+			  
+		  })
+		  
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+<script>
+	function getUrlPars(){
+		var str = location.search.slice(1),
+			obj = {};
+		str.split("&").forEach(function(item){
+			var res = item.split("=");
+			
+			obj[res[0]] = res[1]
+		})
+		return obj
+	}
+	
+	var obj = getUrlPars()
+	
+	console.log(obj)
+	
+	document.write(`欢迎${obj.username}用户`)
+
+
+</script>

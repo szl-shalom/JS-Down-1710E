@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+	<div class="header">
+		<input type="checkbox">
+		<input type="checkbox">
+		<input type="checkbox" checked>
+		<input type="checkbox">
+		<input type="checkbox">
+	</div>
+	
+	<div>
+		<button>  ↑ </button>
+		
+		<button> ↓ </button>
+	</div>
+	
+	
+	<div class="footer">
+		<input type="checkbox" checked>
+		<input type="checkbox">
+	</div>
+	
+	<script>
+		var header = document.querySelector(".header"),
+			footer = document.querySelector(".footer"),
+			btns = [...document.querySelectorAll("button")];
+	
+		// 上按钮
+		btns[0].onclick = function (){
+			// 获取header盒子下面的所有被选中的inputs
+			var inputs = [...document.querySelectorAll(".footer input:checked")]
+			inputs.forEach(function(item){
+				header.appendChild(item)
+			})
+		
+		}
+		// 下按钮
+		btns[1].onclick = function (){
+			// 获取header盒子下面的所有被选中的inputs
+			var inputs = [...document.querySelectorAll(".header input:checked")]
+			inputs.forEach(function(item){
+				footer.appendChild(item)
+			})
+		
+		}
+	</script>
+</body>
+
+</html>

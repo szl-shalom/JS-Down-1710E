@@ -1,0 +1,61 @@
+<html>
+	<head>
+		<style>
+			ul li {
+				list-style:none;
+			}
+			
+			.header-ul li{
+				float:left;
+				width:100px;
+				text-align:center;
+			}
+			
+			.header-ul li.active{
+				background-color:red;
+			}
+			
+			.content-ul li{
+				display:none;
+			}
+			
+			.content-ul li.active{
+				display:block;
+			}
+			
+		</style>
+	</head>
+
+	<body>
+		
+		<ul class="header-ul">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+		</ul>
+		<br>
+		<ul class="content-ul">
+			<li>内容1</li>
+			<li>内容2</li>
+			<li>内容3</li>
+		</ul>
+		<script>
+			var lis = document.querySelectorAll(".header-ul li"),
+				lisCon = document.querySelectorAll(".content-ul li");
+			
+			lis.forEach(function (item,index){
+				item.onclick = function(){
+					// 把原来的类名移除
+					var el = document.querySelector(".header-ul .active")
+					var elCon = document.querySelector(".content-ul .active")
+					el && el.classList.remove("active")
+					elCon && elCon.classList.remove("active")
+					// 添加类名 
+					item.classList.add("active")
+					lisCon[index].classList.add("active")
+				}
+			})
+		
+		</script>
+	</body>
+</html>

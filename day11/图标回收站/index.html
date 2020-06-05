@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>图标回收站</title>
+    <!-- The jQuery UI Styles -->
+    <link rel="stylesheet" href="styles/jquery-ui.css" />
+    <!-- Our stylesheet -->
+    <link rel="stylesheet" href="styles/styles.css" />
+</head>
+
+<body>
+    <div id="main">
+        <div class="folder">
+            <!--folder 加open类名文件夹打开-->
+            <div class="front"></div>
+            <div class="back"></div>
+        </div>​
+        <img src="images/box.png" style="top:340px;left:100px;" alt="box" />
+        <img src="images/calculator.png" style="top:340px;left:170px;" alt="calculator" />
+        <img src="images/clipboard.png" style="top:340px;left:240px;" alt="clipboard" />
+        <img src="images/console.png" style="top:340px;left:310px;" alt="console" />
+        <img src="images/basketball.png" style="top:340px;left:380px;" alt="basketball" />
+        <img src="images/facebook.png" style="top:400px;left:100px;" alt="facebook" />
+        <img src="images/gift.png" style="top:400px;left:170px;" alt="gift" />
+        <img src="images/id_card.png" style="top:400px;left:240px;" alt="id card" />
+        <img src="images/imac.png" style="top:400px;left:310px;" alt="imac" />
+        <img src="images/system_monitoring.png" style="top:400px;left:380px;" alt="system monitoring" />
+    </div>
+
+    <script>
+        //1.查找元素
+        var imgs = [...document.querySelectorAll('img')]; // 所有小图标
+        var folder = document.querySelector('.folder'); //文件夹
+        var main = document.querySelector('#main'); //盒子
+        var front = document.querySelector('.front');
+        //2.鼠标按下事件
+        var pos = null;
+        var flag = false;
+        var el = null;
+        main.addEventListener('mousedown', function(e) {
+            e = e || window.event; //兼容事件对象            
+            var t = e.target || e.srcElement; //兼容事件源
+            e.preventDefault(); //取消默认行为
+            if (t.nodeName === 'IMG') {
+                //鼠标到盒子的距离
+                pos = {
+                    x: e.offsetX,
+                    y: e.offsetY
+                };
+                flag = true;
+                el = t; //事件源
+                folder.classList.add('open'); //张嘴
+            }
+        });
+        //3.鼠标移动
+        document.addEventListener('mousemove', function(e) {
+            if (flag) {
+                var l = e.pageX - pos.x - main.offsetLeft,
+                    t = e.pageY - pos.y - main.offsetTop;
+                el.style.left = l + 'px';
+                el.style.top = t + 'px';
+            }
+        })
+
+        //4.鼠标松开：边界判断
+        document.addEventListener('mouseup', function() {
+            flag = false;
+            //边界判断
+            if (el.offsetLeft > folder.offsetLeft && el.offsetLeft < folder.offsetLeft + folder.offsetWidth - el.offsetWidth && el.offsetTop > folder.offsetTop && el.offsetTop < folder.offsetTop + folder.offsetHeight - el.offsetHeight) {
+                main.removeChild(el); //删除
+                front.innerHTML++;
+            }
+            folder.classList.remove('open'); //闭嘴
+        })
+    </script>
+</body>
+
+</html>

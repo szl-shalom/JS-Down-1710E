@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+	<ul>
+	
+	
+	</ul>
+	
+	<script>
+		var arr = ["one","two","three","four"]
+		
+		var  ul = document.querySelector("ul")
+		
+		ul.innerHTML = arr.map(function(item,ind){
+			return `<li index=${ind}>${item}</li>`
+		}).join("");
+	
+		[...ul.children].forEach(function(item){
+			item.onclick = function(){
+				alert(item.getAttribute("index"))
+			
+				item.removeAttribute("index")
+			}
+		})
+		
+	
+	
+		//自带属性
+		//标签自己拥有的属性 比如img  => src   alt  
+	
+		//var img = document.querySelector("img")
+		//../day3/img/2.jpg
+		// img.src = "../day3/img/2.jpg"
+		//img["src"] = "../day3/img/2.jpg"
+		
+		//img.id = "qwe"
+		
+		//img.className = "qweqwe"
+		
+	
+		//自定义属性 
+		//不是标签自带的属性 就是自定义属性
+		
+		//添加自定义属性
+		//语法：el.setAttribute(属性名称,属性值)
+		//功能：给el元素节点添加一个属性
+		
+	    //删除自定义属性
+		//语法：el.removeAttribute("属性名称")
+		//功能：删除el的自定义属性
+		
+		
+		//获取自定义属性
+		// 语法:el.getAttribute("属性名称")
+		// 功能：获取el的自定义属性
+		
+		
+		//img.setAttribute("index",1)
+		
+		//console.log(img.getAttribute("index"))
+		
+		
+	</script>
+</body>
+
+</html>
